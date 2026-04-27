@@ -1,0 +1,28 @@
+# T009 Module Detail
+
+## Objective
+
+Implement the module detail screen and lock-state behavior.
+
+## Ownership
+
+Files:
+- `src/screens/module/*`
+
+## Dependencies
+
+- T003
+- T004
+
+## Must Do
+
+- hero header
+- progress/stat surfaces
+- concept primer
+- start/continue CTA
+- locked-module toast behavior
+
+## Done When
+
+- unlocked modules route into questions
+- locked modules explain the prerequisite without breaking flow
