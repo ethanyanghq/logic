@@ -4,6 +4,8 @@ Use these prompts exactly as written. They are for Codex only and cover the back
 
 These prompts intentionally use "backend" to mean the in-repo state, logic, schema, preset, and validation layer. They do not authorize adding a real backend service.
 
+Maintain `execution/handoffs/codex-to-claude.md` as you complete these tasks. Claude Code reads that file before any frontend work.
+
 ## T004
 
 ```text
@@ -11,6 +13,7 @@ You are Codex executing task T004 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/05-ambiguities-and-decisions.md
@@ -40,7 +43,8 @@ Constraints:
 When finished:
 - run any relevant local verification available for this repo
 - manually exercise onboarding, question answer, reset, and preset state transitions if possible
-- summarize what changed, what you verified, and any handoff contracts frontend must consume
+- update the `## T004` section of `execution/handoffs/codex-to-claude.md`
+- in that section, summarize what changed, what you verified, and any schema/contracts/selectors/actions frontend must consume
 ```
 
 ## T012
@@ -50,6 +54,7 @@ You are Codex executing task T012 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/05-ambiguities-and-decisions.md
@@ -80,7 +85,8 @@ Constraints:
 
 When finished:
 - run any relevant validation available for schemas/data
-- summarize what changed, what you verified, and any schema contracts frontend must consume
+- update the `## T012` section of `execution/handoffs/codex-to-claude.md`
+- in that section, summarize what changed, what you verified, and any schema contracts frontend must consume
 ```
 
 ## T013
@@ -90,6 +96,7 @@ You are Codex executing task T013 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/05-ambiguities-and-decisions.md
@@ -118,7 +125,8 @@ Constraints:
 
 When finished:
 - run any relevant pure-function or state verification available for this repo
-- summarize what changed, what you verified, and the exact selectors/actions/state that frontend should use
+- update the `## T013` section of `execution/handoffs/codex-to-claude.md`
+- in that section, summarize what changed, what you verified, and the exact selectors/actions/state that frontend should use
 ```
 
 ## T016
@@ -128,6 +136,7 @@ You are Codex executing task T016 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/05-ambiguities-and-decisions.md
@@ -161,5 +170,6 @@ Constraints:
 
 When finished:
 - verify the preset payloads are coherent and internally consistent
-- summarize what changed, what you verified, and the exact contract frontend should use to open each preset on the intended screen
+- update the `## T016` section of `execution/handoffs/codex-to-claude.md`
+- in that section, summarize what changed, what you verified, and the exact contract frontend should use to open each preset on the intended screen
 ```

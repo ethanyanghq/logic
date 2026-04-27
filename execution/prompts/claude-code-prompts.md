@@ -2,7 +2,7 @@
 
 Use these prompts exactly as written. They are for Claude Code only and cover the frontend-owned tasks.
 
-Before running any prompt, ensure the backend dependencies named in the task are already landed in the repo.
+Before running any prompt, ensure the backend dependencies named in the task are already landed in the repo. All Codex backend prompts are expected to run before Claude Code, and Claude Code must read `execution/handoffs/codex-to-claude.md` before each frontend task.
 
 ## T001
 
@@ -11,6 +11,7 @@ You are Claude Code executing task T001 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/03-technical-architecture.md
@@ -52,6 +53,7 @@ You are Claude Code executing task T002 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/06-delivery-ownership.md
@@ -89,6 +91,7 @@ You are Claude Code executing task T003 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/06-delivery-ownership.md
@@ -136,6 +139,7 @@ You are Claude Code executing task T005 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/06-delivery-ownership.md
@@ -173,6 +177,7 @@ You are Claude Code executing task T006 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/03-technical-architecture.md
@@ -210,6 +215,7 @@ You are Claude Code executing task T007 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/06-delivery-ownership.md
@@ -247,6 +253,7 @@ You are Claude Code executing task T008 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/06-delivery-ownership.md
@@ -282,6 +289,7 @@ You are Claude Code executing task T009 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/06-delivery-ownership.md
@@ -316,6 +324,7 @@ You are Claude Code executing task T010 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/05-ambiguities-and-decisions.md
@@ -354,6 +363,7 @@ You are Claude Code executing task T011 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/06-delivery-ownership.md
@@ -388,6 +398,7 @@ You are Claude Code executing task T014 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/06-delivery-ownership.md
@@ -423,6 +434,7 @@ You are Claude Code executing task T015 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/06-delivery-ownership.md
@@ -457,6 +469,7 @@ You are Claude Code executing task T017 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/06-delivery-ownership.md
@@ -489,6 +502,7 @@ You are Claude Code executing task T018 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T018-motion-polish.md
@@ -523,6 +537,7 @@ You are Claude Code executing task T019 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/contracts/02-design-contract.md
 - execution/contracts/03-technical-architecture.md
 - execution/contracts/06-delivery-ownership.md
@@ -561,6 +576,7 @@ You are Claude Code executing task T020 for the Logic Learning App prototype.
 
 Read these files first:
 - execution/README.md
+- execution/handoffs/codex-to-claude.md
 - execution/checklists/01-qa-and-demo-checklist.md
 - execution/contracts/01-product-contract.md
 - execution/contracts/02-design-contract.md

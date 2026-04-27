@@ -93,6 +93,7 @@ Frontend/backend handoff SHOULD happen through:
 - store actions and selectors
 - pure helper APIs
 - preset metadata and normalized state payloads
+- the running backend handoff doc at `execution/handoffs/codex-to-claude.md`
 
 If a change requires edits on both sides:
 - Codex lands the backend contract first

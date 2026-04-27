@@ -15,7 +15,9 @@ These prompts preserve the same product target defined in [PRD_Logic.md](/Users/
 
 ## Use Rules
 
-1. Use the prompts in task order unless a dependency says otherwise.
-2. Do not merge multiple prompts into one run unless the relevant task docs explicitly allow wider scope.
-3. Do not change product behavior, product scope, or the frontend/backend ownership split.
-4. If an execution prompt conflicts with a contract, the contract wins.
+1. Run all Codex backend prompts first, and keep `execution/handoffs/codex-to-claude.md` updated as each backend task finishes.
+2. Run Claude Code frontend prompts only after the backend pass is complete, reading `execution/handoffs/codex-to-claude.md` before each frontend run.
+3. Within the backend pass and within the frontend pass, use the prompts in task order unless a dependency says otherwise.
+4. Do not merge multiple prompts into one run unless the relevant task docs explicitly allow wider scope.
+5. Do not change product behavior, product scope, or the frontend/backend ownership split.
+6. If an execution prompt conflicts with a contract, the contract wins.

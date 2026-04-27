@@ -75,6 +75,7 @@ Codex handoff to Claude Code SHOULD include:
 - store actions and side-effect rules
 - normalized sample data or preset payloads
 - edge cases that the UI must respect
+- a task-by-task update in `execution/handoffs/codex-to-claude.md`
 
 Claude Code handoff back to Codex SHOULD include:
 - any backend contract gaps discovered during UI integration

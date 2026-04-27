@@ -53,6 +53,7 @@ Use this packet to:
 - Codex owns backend work: `src/store/*`, `src/lib/*`, `src/data/*`, schema validation, preset loaders, and other non-visual business logic.
 - Claude Code owns frontend work: `src/screens/*`, `src/components/*`, `src/styles/*`, motion, sound wiring, SVG rendering, and all user-visible UI behavior.
 - Shared integration happens through typed contracts, selectors, data schemas, and documented props/state boundaries.
+- The running backend-to-frontend handoff artifact lives at `execution/handoffs/codex-to-claude.md`.
 - This split MUST NOT change product scope, feature behavior, or demo outcomes.
 
 ## Recommended Delivery Order
