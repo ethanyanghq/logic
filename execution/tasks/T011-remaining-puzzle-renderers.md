@@ -2,7 +2,7 @@
 
 ## Objective
 
-Implement the remaining visual question renderers and shared geometry helpers.
+Implement the remaining visual question renderers and shared geometry helpers, including the missing product-defined visual multiple-choice path.
 
 ## Assigned Agent
 
@@ -19,11 +19,12 @@ Files:
 
 ## Must Do
 
+- multiple choice visual renderer path
 - sequence completion
 - odd one out
-- rotation/transform puzzle
+- rotation/transform visual subtype support
 - any shared visual spec helpers
 
 ## Done When
 
-- all visual question types in scope render via typed SVG components
+- all product-defined visual question types in scope render via typed SVG components without inventing a sixth top-level question type

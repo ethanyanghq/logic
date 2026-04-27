@@ -17,9 +17,12 @@ Files:
 ## Dependencies
 
 - T004
-- T010
 - T012
 - T013
+
+## Coordination Note
+
+- Preset target routes MUST follow the shared routing contract; destination screens do not all need to be visually complete before backend preset payloads are defined.
 
 ## Must Do
 

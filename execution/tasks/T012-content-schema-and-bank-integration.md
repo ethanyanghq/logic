@@ -29,7 +29,9 @@ Files:
 ## Must Do
 
 - encode data files to the agreed schema
+- include canonical concept-primer copy in module records
 - wire module/question relationships
+- preserve the exact five top-level question types in the content schema
 - flag curated daily-eligible questions
 
 ## Done When

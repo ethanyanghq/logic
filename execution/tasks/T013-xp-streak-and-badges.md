@@ -25,7 +25,7 @@ Files:
 - level derivation
 - streak updates and reset/freeze behavior
 - milestone badge unlock evaluation
-- typed selector/state outputs for streak-risk, milestones, earned badges, and reward summaries
+- typed selector/state outputs for streak-risk, milestones, earned badges, reward summaries, and other derived activity read models consumed by home/progress surfaces
 
 ## Done When
 

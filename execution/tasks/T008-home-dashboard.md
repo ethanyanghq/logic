@@ -17,6 +17,7 @@ Files:
 
 - T003
 - T004
+- T012
 
 ## Must Do
 
@@ -36,4 +37,4 @@ Files:
 
 ## Verification
 
-- verify with fresh, mid-progress, and power-user states
+- verify with fresh, mid-progress, and fully populated states using seeded store data or later presets

@@ -99,9 +99,10 @@ Gate to next wave:
 - one full question loop works end-to-end
 - persisted question state behaves correctly
 
-## Wave 4: Primary Screens
+## Wave 4: Canonical Content And Primary Screens
 
 Scope:
+- content schema and question-bank integration
 - home/dashboard
 - module detail
 - onboarding flow
@@ -110,7 +111,7 @@ Dependencies:
 - Waves 1-3
 
 Backend work:
-- none beyond existing store and data contracts
+- Task T012 content schema and question-bank integration
 
 Frontend work:
 - Task T008 home/dashboard
@@ -119,7 +120,7 @@ Frontend work:
 
 Notes:
 - onboarding depends on question shell
-- home/module screens depend on store shape and primitive stability
+- home/module/onboarding screens depend on canonical module/question data from T012 in addition to store shape and primitive stability
 
 Gate to next wave:
 - first-time user can complete onboarding and land on personalized home
@@ -129,14 +130,13 @@ Gate to next wave:
 
 Scope:
 - remaining visual puzzle renderers
-- question bank integration
 - module content wiring
 
 Dependencies:
 - Waves 3-4
 
 Backend work:
-- Task T012 content schema and question-bank integration
+- none beyond the T012 contracts already landed in Wave 4
 
 Frontend work:
 - Task T011 remaining puzzle renderers

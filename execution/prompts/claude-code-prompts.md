@@ -2,7 +2,7 @@
 
 Use these prompts exactly as written. They are for Claude Code only and cover the frontend-owned tasks.
 
-Before running any prompt, ensure the backend dependencies named in the task are already landed in the repo. All Codex backend prompts are expected to run before Claude Code, and Claude Code must read `execution/handoffs/codex-to-claude.md` before each frontend task.
+Before running any prompt, ensure the backend dependencies named in the task are already landed in the repo. Frontend foundation work may begin before later backend waves, but Claude Code must read `execution/handoffs/codex-to-claude.md` before each frontend task that consumes backend-owned contracts.
 
 ## T001
 
@@ -259,7 +259,7 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T008-home-dashboard.md
 
-Dependencies T003 and T004 must already be landed.
+Dependencies T003, T004, and T012 must already be landed.
 
 Your scope is frontend only. Consume store-driven data from backend selectors/actions.
 
@@ -275,10 +275,10 @@ Edit only:
 Constraints:
 - above-the-fold priorities must match the design contract
 - do not reimplement XP, streak, or module logic in UI code
-- support verification with fresh, mid-progress, and power-user states
+- support verification with fresh, mid-progress, and fully populated states using seeded store data or later presets
 
 When finished:
-- verify the screen with the available states/presets
+- verify the screen with seeded data or the available presets
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -295,13 +295,13 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T009-module-detail.md
 
-Dependencies T003 and T004 must already be landed.
+Dependencies T003, T004, and T012 must already be landed.
 
-Your scope is frontend only. Consume lock/unlock and progress state from backend-owned contracts.
+Your scope is frontend only. Consume lock/unlock, module metadata, and progress state from backend-owned contracts.
 
 Implement T009 exactly:
 - build the module detail screen
-- include hero header, progress/stat surfaces, concept primer, and start/continue CTA
+- include hero header, progress/stat surfaces, concept primer from canonical module data, and start/continue CTA
 - implement locked-module toast behavior without breaking flow
 
 Edit only:
@@ -331,7 +331,7 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T010-onboarding-flow.md
 
-Dependencies T006, T008, and T009 must already be landed.
+Dependencies T006, T008, T009, and T012 must already be landed.
 
 Your scope is frontend only. Consume checkpointing, XP, and recommendation logic from backend state/actions. Do not recreate these rules in UI code.
 
@@ -375,7 +375,8 @@ Your scope is frontend only.
 
 Implement T011 exactly:
 - add the remaining visual question renderers
-- support sequence completion, odd one out, and rotation/transform puzzles
+- add the missing visual multiple-choice renderer path
+- support sequence completion, odd one out, and rotation/transform visual subtypes
 - add any shared visual spec helpers needed by these renderers
 
 Edit only:
@@ -384,6 +385,7 @@ Edit only:
 Constraints:
 - keep all outputs deterministic SVG
 - preserve the neural/solar palette rules
+- preserve exactly five top-level question types rather than inventing a sixth renderer-facing type
 - do not absorb data-schema ownership into renderer code
 
 When finished:

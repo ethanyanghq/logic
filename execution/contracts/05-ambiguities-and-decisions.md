@@ -143,6 +143,19 @@ Execution decision:
 - "Frontend" means the visible app shell, screens, components, animation, sound integration, and SVG presentation layer.
 - This ownership split MUST NOT add any external service or alter product behavior.
 
+### A12. Rotation/transform question classification
+
+PRD ambiguity:
+- The product defines exactly five top-level question types.
+- The execution tasks also referenced a "rotation/transform puzzle," which could be misread as a sixth type.
+
+Execution decision:
+- Keep exactly five top-level question types.
+- Treat rotation/transform content as a structured visual subtype used inside `multiple choice visual` or other visual-spec-driven questions, not as a sixth top-level type.
+
+Reason:
+- This preserves the product contract while still giving the renderer layer a concrete implementation target for rotation-based visuals.
+
 ## 2. Still Open But Non-Blocking
 
 These can be implemented with placeholders or conservative defaults if product signoff is pending.

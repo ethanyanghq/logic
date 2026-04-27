@@ -56,7 +56,7 @@ The app store MUST contain:
 - question progress keyed by `questionId`
 - earned badge IDs
 - daily challenge state
-- user preferences for sound and reduced motion / skip animations mode
+- user preferences for sound, reduced motion / skip animations mode, and grid overlay
 - onboarding checkpoint state
 
 The store MUST expose:
@@ -65,6 +65,7 @@ The store MUST expose:
 - actions for awarding XP
 - actions for recomputing streaks
 - actions for applying demo presets
+- actions for updating demo-control preferences
 - actions for onboarding progression
 
 ## 5. Screen Contracts

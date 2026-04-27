@@ -15,9 +15,9 @@ These prompts preserve the same product target defined in [PRD_Logic.md](/Users/
 
 ## Use Rules
 
-1. Run all Codex backend prompts first, and keep `execution/handoffs/codex-to-claude.md` updated as each backend task finishes.
-2. Run Claude Code frontend prompts only after the backend pass is complete, reading `execution/handoffs/codex-to-claude.md` before each frontend run.
-3. Within the backend pass and within the frontend pass, use the prompts in task order unless a dependency says otherwise.
+1. Run tasks in dependency order across both agents rather than forcing a full backend pass before any frontend work.
+2. Any frontend task may begin only after its named backend dependencies are landed, and Claude Code MUST read `execution/handoffs/codex-to-claude.md` before each dependent frontend run.
+3. Backend tasks that define shared contracts SHOULD land before the frontend tasks that consume them, even when the wave contains both backend and frontend work.
 4. Do not merge multiple prompts into one run unless the relevant task docs explicitly allow wider scope.
 5. Do not change product behavior, product scope, or the frontend/backend ownership split.
 6. If an execution prompt conflicts with a contract, the contract wins.

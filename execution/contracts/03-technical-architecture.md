@@ -126,6 +126,7 @@ Rules:
 - persistence versioning MUST be supported
 - reset MUST clear the persisted namespace safely
 - preset application MUST be deterministic and idempotent
+- the preferences/demo-controls domain SHOULD own sound, reduced-motion, skip-animations, and grid-overlay state rather than ad hoc component-local toggles
 
 ## 6. Data Contracts
 
@@ -138,6 +139,7 @@ Each module record MUST include:
 - `iconName`
 - `accentShape`
 - `difficulty`
+- `conceptPrimer`
 - `questionIds`
 - `prerequisiteModuleId` when applicable
 
@@ -154,6 +156,10 @@ Each question record MUST include:
 - `explanation`
 - `tags`
 - `dailyEligible`
+
+Question-type rule:
+- top-level `type` values MUST remain the five product-defined question types
+- rotation/transform content is a structured visual-spec subtype, not a sixth top-level question type
 
 ### Badge Schema
 
@@ -195,10 +201,11 @@ Rules:
 - Theme colors SHOULD be injected from tokens, not hardcoded at renderer call sites.
 
 Suggested renderer split:
+- `MultipleChoiceVisualRenderer`
 - `MatrixPuzzleRenderer`
 - `SequencePuzzleRenderer`
 - `OddOneOutRenderer`
-- `RotationPuzzleRenderer`
+- `RotationPuzzleRenderer` as a visual-spec helper where needed
 - shared geometry/spec helpers
 
 ## 9. Demo/Reset Architecture

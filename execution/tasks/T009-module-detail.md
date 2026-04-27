@@ -17,12 +17,13 @@ Files:
 
 - T003
 - T004
+- T012
 
 ## Must Do
 
 - hero header
 - progress/stat surfaces
-- concept primer
+- concept primer from canonical module data
 - start/continue CTA
 - locked-module toast behavior
 

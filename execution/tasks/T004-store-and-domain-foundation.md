@@ -26,6 +26,7 @@ Files:
 - create the persisted app store under `logic-app-v1`
 - support reset and preset application
 - encode XP, level, streak, daily-selection, and onboarding recommendation rules
+- own persisted demo-control preference state for sound, reduced motion, skip animations, and grid overlay
 
 ## Must Not Do
 

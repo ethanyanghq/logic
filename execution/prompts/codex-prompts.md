@@ -4,7 +4,7 @@ Use these prompts exactly as written. They are for Codex only and cover the back
 
 These prompts intentionally use "backend" to mean the in-repo state, logic, schema, preset, and validation layer. They do not authorize adding a real backend service.
 
-Maintain `execution/handoffs/codex-to-claude.md` as you complete these tasks. Claude Code reads that file before any frontend work.
+Maintain `execution/handoffs/codex-to-claude.md` as you complete these tasks. Claude Code reads that file before any frontend task that depends on backend-owned contracts.
 
 ## T004
 
@@ -26,6 +26,7 @@ Implement T004 exactly:
 - create the persisted Zustand store under logic-app-v1
 - support reset and preset application
 - encode XP, level, streak, daily-selection, and onboarding recommendation rules
+- include backend-owned demo-control preference state for sound, reduced motion, skip animations, and grid overlay
 
 Own these areas:
 - src/store/*
@@ -69,6 +70,8 @@ Implement T012 exactly:
 - integrate modules, questions, badges, and preset data into the app data layer
 - encode data files to the agreed schema
 - wire module/question relationships
+- include canonical module concept-primer copy in module records
+- preserve the exact five top-level question types, with rotation/transform specs modeled as visual-question subtypes rather than a sixth type
 - flag curated daily-eligible questions
 
 Own these files:
@@ -112,7 +115,7 @@ Implement T013 exactly:
 - implement level derivation
 - implement streak updates and reset/freeze behavior
 - implement milestone badge unlock evaluation
-- expose typed selector/state outputs for streak-risk, milestones, earned badges, and reward summaries
+- expose typed selector/state outputs for streak-risk, milestones, earned badges, reward summaries, and other derived activity read models consumed by home/progress surfaces
 
 Own these areas:
 - src/lib/*
@@ -143,7 +146,7 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T016-demo-presets.md
 
-Dependencies T004, T010, T012, and T013 must already be landed.
+Dependencies T004, T012, and T013 must already be landed.
 
 Your scope is backend only. Define preset states, normalized payloads, and preset loaders consumed by the demo UI. Do not implement the final demo menu UI here.
 
@@ -166,6 +169,7 @@ Required presets:
 Constraints:
 - every preset should load in under 1 second in normal local conditions
 - preset payloads should already include the state shape frontend needs to route correctly
+- target route identifiers must match the shared routing contract, even if some destination screens land later in the overall wave plan
 - do not move routing or visible presentation logic into backend code
 
 When finished:
