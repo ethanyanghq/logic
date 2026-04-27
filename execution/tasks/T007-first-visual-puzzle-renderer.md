@@ -4,6 +4,10 @@
 
 Implement the first SVG puzzle renderer, integrated into the shared question shell.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

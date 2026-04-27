@@ -53,7 +53,53 @@ Rules:
 - `store/*` owns persisted app state and mutations.
 - `data/*` owns authored static content and presets.
 
-## 3. Routing Contract
+## 3. Delivery Ownership Model
+
+The implementation MUST follow a strict frontend/backend split without changing the shipped product.
+
+### Backend Ownership: Codex
+
+Codex owns:
+- `src/store/*`
+- `src/lib/*`
+- `src/data/*`
+- schema validation and data normalization helpers
+- preset-state definitions and loaders
+- selector and state-contract definitions consumed by UI
+
+Backend rules:
+- backend code MUST NOT own screen composition or visual styling
+- backend code SHOULD expose stable, typed inputs/outputs for frontend consumption
+- backend changes that alter public state shape or selector contracts MUST update the execution docs or shared types before frontend integration
+
+### Frontend Ownership: Claude Code
+
+Claude Code owns:
+- `src/screens/*`
+- `src/components/*`
+- `src/hooks/*` except hooks that are pure backend adapters
+- `src/styles/*`
+- motion, sound wiring, SVG presentation, and visible interaction behavior
+
+Frontend rules:
+- frontend code MUST consume business rules from backend contracts rather than reimplement them
+- frontend code MUST NOT mutate canonical data schemas ad hoc
+- frontend code MAY add presentation-only adapters when they do not redefine backend logic
+
+### Handoff Boundary
+
+Frontend/backend handoff SHOULD happen through:
+- TypeScript types and schema definitions
+- store actions and selectors
+- pure helper APIs
+- preset metadata and normalized state payloads
+
+If a change requires edits on both sides:
+- Codex lands the backend contract first
+- Claude Code integrates it into the UI second
+- neither side should silently expand the other's scope
+
+## 4. Routing Contract
 
 - Routing MUST use a memory router.
 - Root routing MUST support:
@@ -63,7 +109,7 @@ Rules:
   - modal-style question presentation
 - URL semantics are internal-only and MUST NOT be treated as user-facing navigation.
 
-## 4. Store Contract
+## 5. Store Contract
 
 The store SHOULD be split into coherent slices or modules, but MUST present one persisted app state.
 
@@ -80,7 +126,7 @@ Rules:
 - reset MUST clear the persisted namespace safely
 - preset application MUST be deterministic and idempotent
 
-## 5. Data Contracts
+## 6. Data Contracts
 
 ### Module Schema
 
@@ -126,7 +172,7 @@ Each preset MUST define:
 - required derived values already normalized
 - optional explanatory label for demo menu
 
-## 6. Domain Logic Boundaries
+## 7. Domain Logic Boundaries
 
 Pure library modules SHOULD be used for:
 - XP calculation
@@ -140,7 +186,7 @@ Rules:
 - these modules SHOULD be side-effect free
 - UI code MUST NOT reimplement the same business rule ad hoc
 
-## 7. Visual Puzzle Architecture
+## 8. Visual Puzzle Architecture
 
 - All visual puzzles MUST be rendered from structured JSON spec.
 - `VisualPuzzle` SHOULD dispatch by question type/spec subtype.
@@ -154,7 +200,7 @@ Suggested renderer split:
 - `RotationPuzzleRenderer`
 - shared geometry/spec helpers
 
-## 8. Demo/Reset Architecture
+## 9. Demo/Reset Architecture
 
 - Keyboard shortcut handling SHOULD live in a reusable hook.
 - Demo menu UI SHOULD live under `components/demo`.
@@ -162,14 +208,14 @@ Suggested renderer split:
 - Reset and preset application MUST work without page reload.
 - Global skip-animations mode SHOULD feed both motion and sound suppression.
 
-## 9. Performance Contract
+## 10. Performance Contract
 
 - All static content SHOULD be imported at build time.
 - Screens MAY be code-split if needed.
 - Fonts and sound assets SHOULD be preloaded.
 - Skeletons SHOULD reserve final space to prevent layout shift.
 
-## 10. Testing And Verification Expectations
+## 11. Testing And Verification Expectations
 
 Even if formal tests are not fully built at first, the architecture SHOULD make room for:
 - schema validation for data files
@@ -177,8 +223,10 @@ Even if formal tests are not fully built at first, the architecture SHOULD make 
 - smoke verification of preset loading
 - strict type checks
 
-## 11. Agent Implementation Rules
+## 12. Agent Implementation Rules
 
 - Each agent task SHOULD own a narrow file set.
 - Shared contracts MUST be centralized before feature screens are built.
 - If a task requires touching multiple ownership zones, it SHOULD be split unless the integration point is inseparable.
+- Backend tasks SHOULD land state/data contracts before frontend screens depend on them.
+- Frontend tasks SHOULD treat backend selectors, schemas, and state actions as the source of truth.

@@ -4,6 +4,10 @@
 
 Apply the motion system consistently across implemented screens and primitives.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

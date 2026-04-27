@@ -4,6 +4,10 @@
 
 Implement the module detail screen and lock-state behavior.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

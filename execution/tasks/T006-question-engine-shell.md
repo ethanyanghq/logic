@@ -4,6 +4,10 @@
 
 Implement the shared question experience for text multiple-choice questions first.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

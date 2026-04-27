@@ -4,6 +4,10 @@
 
 Implement preload, priority, and event mappings for the app sound system.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

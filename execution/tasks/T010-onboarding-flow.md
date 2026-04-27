@@ -4,6 +4,10 @@
 
 Implement onboarding end-to-end with checkpointing and first-home reveal.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

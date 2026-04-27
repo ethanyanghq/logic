@@ -4,12 +4,20 @@
 
 Implement the Demo Controls bottom sheet, keyboard shortcut entry, and basic toggles/reset flow.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:
 - `src/components/demo/*`
 - `src/hooks/useKeyboardShortcut.ts`
-- related store/demo preference hooks
+
+## Frontend Boundary
+
+- Consume reset actions, preset metadata, and preference selectors defined by backend tasks.
+- Do not redefine preset payloads or persistence rules in UI code.
 
 ## Dependencies
 

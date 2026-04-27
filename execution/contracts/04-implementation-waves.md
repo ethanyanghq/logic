@@ -2,6 +2,10 @@
 
 This document defines the recommended execution order, dependency graph, and parallelization strategy.
 
+All waves preserve the same product target. The change here is ownership only:
+- Codex executes backend tasks
+- Claude Code executes frontend tasks
+
 ## Wave 0: Clarify And Normalize
 
 Goal:
@@ -32,7 +36,10 @@ Scope:
 Dependencies:
 - Wave 0
 
-Parallel work:
+Backend work:
+- none
+
+Frontend work:
 - Task T001 app shell/layout
 - Task T002 Tailwind/token setup
 - Task T003 UI primitives
@@ -57,8 +64,10 @@ Scope:
 Dependencies:
 - Wave 1
 
-Parallel work:
+Backend work:
 - Task T004 store/domain foundation
+
+Frontend work:
 - Task T005 demo controls shell
 
 Gate to next wave:
@@ -79,7 +88,10 @@ Scope:
 Dependencies:
 - Waves 1-2
 
-Parallel work:
+Backend work:
+- none beyond T004 contracts consumed by UI
+
+Frontend work:
 - Task T006 question engine shell
 - Task T007 first puzzle renderer
 
@@ -97,7 +109,10 @@ Scope:
 Dependencies:
 - Waves 1-3
 
-Parallel work:
+Backend work:
+- none beyond existing store and data contracts
+
+Frontend work:
 - Task T008 home/dashboard
 - Task T009 module detail
 - Task T010 onboarding
@@ -120,9 +135,11 @@ Scope:
 Dependencies:
 - Waves 3-4
 
-Parallel work:
-- Task T011 remaining puzzle renderers
+Backend work:
 - Task T012 content schema and question-bank integration
+
+Frontend work:
+- Task T011 remaining puzzle renderers
 
 Gate to next wave:
 - all four modules can be navigated
@@ -140,8 +157,10 @@ Scope:
 Dependencies:
 - Waves 2-5
 
-Parallel work:
+Backend work:
 - Task T013 XP/streak/badge rules
+
+Frontend work:
 - Task T014 daily challenge
 - Task T015 module completion
 
@@ -162,8 +181,10 @@ Scope:
 Dependencies:
 - Waves 2-6
 
-Parallel work:
+Backend work:
 - Task T016 demo presets
+
+Frontend work:
 - Task T017 progress/profile
 
 Gate to next wave:
@@ -182,7 +203,10 @@ Scope:
 Dependencies:
 - all earlier waves
 
-Parallel work:
+Backend work:
+- none
+
+Frontend work:
 - Task T018 motion polish
 - Task T019 sound system
 
@@ -202,7 +226,10 @@ Scope:
 Dependencies:
 - all earlier waves
 
-Parallel work:
+Backend work:
+- address backend defects through the owning backend tasks
+
+Frontend work:
 - Task T020 QA/demo hardening
 
 Gate to release:
@@ -215,6 +242,8 @@ Gate to release:
 - Do not split shared store contracts across multiple agents at the same time.
 - Do not run motion polish before the underlying flows are stable.
 - Pull forward the most demo-visible states early: daily card, completion screen, power-user preset.
+- Backend tasks should land selectors, schemas, and preset contracts before the dependent frontend wave begins.
+- Frontend tasks should consume backend contracts rather than inventing stopgap local logic.
 
 ## Recommended Review Cadence
 

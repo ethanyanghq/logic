@@ -4,6 +4,10 @@
 
 Build the home screen with high-value demo surfaces and real store-driven data.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

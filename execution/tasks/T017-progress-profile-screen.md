@@ -4,6 +4,10 @@
 
 Implement the deeper progress screen and data visualizations.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

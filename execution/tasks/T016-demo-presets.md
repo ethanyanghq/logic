@@ -2,22 +2,24 @@
 
 ## Objective
 
-Implement the five preset states and route them to the most relevant screens.
+Implement the five preset states, normalized payloads, and preset loaders consumed by the demo UI.
+
+## Assigned Agent
+
+Codex (Backend)
 
 ## Ownership
 
 Files:
 - `src/data/presets.ts`
-- `src/components/demo/*`
 - store preset loaders
 
 ## Dependencies
 
 - T004
 - T010
+- T012
 - T013
-- T014
-- T015
 
 ## Must Do
 
@@ -30,4 +32,4 @@ Files:
 ## Done When
 
 - every preset loads in under 1 second in normal local conditions
-- every preset opens on the intended screen with coherent visible state
+- frontend can open every preset on the intended screen with coherent visible state using backend-defined payloads

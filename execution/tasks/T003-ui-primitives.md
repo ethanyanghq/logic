@@ -4,6 +4,10 @@
 
 Implement the reusable primitive component set with interaction states.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

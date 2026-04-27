@@ -2,13 +2,21 @@
 
 ## Objective
 
-Implement the dedicated daily challenge surface and deterministic daily selection.
+Implement the dedicated daily challenge surface on top of the backend daily-selection contract.
+
+## Assigned Agent
+
+Claude Code (Frontend)
 
 ## Ownership
 
 Files:
 - `src/screens/daily/*`
-- related daily helpers/store selectors
+
+## Frontend Boundary
+
+- Consume deterministic daily-selection outputs from backend helpers/store selectors.
+- Do not redefine daily-pool selection or persistence rules in the screen layer.
 
 ## Dependencies
 

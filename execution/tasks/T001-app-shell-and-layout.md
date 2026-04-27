@@ -4,6 +4,10 @@
 
 Create the app shell, phone-frame container, status bar, home indicator, and base layout structure.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:
@@ -14,7 +18,7 @@ Files:
 
 ## Dependencies
 
-- contracts `01`, `02`, `03`, `05`
+- contracts `01`, `02`, `03`, `05`, `06`
 
 ## Must Do
 

@@ -2,20 +2,21 @@
 
 ## Objective
 
-Implement progression rules, badge evaluation, milestone toasts, and solar-corona streak behavior.
+Implement progression rules, badge evaluation, derived streak/badge state, and UI-facing reward contracts.
+
+## Assigned Agent
+
+Codex (Backend)
 
 ## Ownership
 
 Files:
 - `src/lib/*`
 - `src/store/*`
-- `src/components/feedback/*`
-- any streak/badge UI surfaces
 
 ## Dependencies
 
 - T004
-- T008
 - T012
 
 ## Must Do
@@ -24,9 +25,9 @@ Files:
 - level derivation
 - streak updates and reset/freeze behavior
 - milestone badge unlock evaluation
-- toast/reveal hooks
+- typed selector/state outputs for streak-risk, milestones, earned badges, and reward summaries
 
 ## Done When
 
 - progression behavior is deterministic from activity history
-- streak-risk and milestone states render correctly
+- frontend can consume stable reward and badge state without reimplementing logic

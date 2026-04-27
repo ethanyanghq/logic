@@ -4,6 +4,10 @@
 
 Implement the remaining visual question renderers and shared geometry helpers.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

@@ -4,6 +4,10 @@
 
 Implement the full-screen module completion experience.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:

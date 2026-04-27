@@ -4,6 +4,10 @@
 
 Encode Eclipse Glass into Tailwind/theme/global tokens and establish spacing/type rules.
 
+## Assigned Agent
+
+Claude Code (Frontend)
+
 ## Ownership
 
 Files:
@@ -13,7 +17,7 @@ Files:
 
 ## Dependencies
 
-- contracts `02`, `03`
+- contracts `02`, `03`, `06`
 
 ## Must Do
 

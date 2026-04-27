@@ -4,6 +4,10 @@
 
 Implement the persisted Zustand store and pure domain helpers.
 
+## Assigned Agent
+
+Codex (Backend)
+
 ## Ownership
 
 Files:
@@ -15,7 +19,7 @@ Files:
 
 ## Dependencies
 
-- contracts `01`, `03`, `05`
+- contracts `01`, `03`, `05`, `06`
 
 ## Must Do
 

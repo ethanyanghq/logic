@@ -133,6 +133,16 @@ Execution decision:
   - daily challenge completed
 - Show the most recent 3 human-readable events.
 
+### A11. Meaning of "backend" in this prototype plan
+
+PRD ambiguity:
+- The product has no real backend, but the execution plan now splits frontend and backend ownership.
+
+Execution decision:
+- "Backend" means the in-repo data, persistence, domain logic, selectors, schemas, and preset-state layer.
+- "Frontend" means the visible app shell, screens, components, animation, sound integration, and SVG presentation layer.
+- This ownership split MUST NOT add any external service or alter product behavior.
+
 ## 2. Still Open But Non-Blocking
 
 These can be implemented with placeholders or conservative defaults if product signoff is pending.

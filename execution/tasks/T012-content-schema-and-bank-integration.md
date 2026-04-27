@@ -4,6 +4,10 @@
 
 Integrate modules, questions, badges, and preset data into the app data layer.
 
+## Assigned Agent
+
+Codex (Backend)
+
 ## Ownership
 
 Files:
@@ -16,7 +20,11 @@ Files:
 ## Dependencies
 
 - T004
-- T011
+
+## Backend Boundary
+
+- Define canonical content schemas and normalized authored data.
+- Do not implement final screen presentation for this content.
 
 ## Must Do
 

@@ -2,13 +2,22 @@
 
 ## Objective
 
-Perform demo-focused hardening and close the gap between functional completeness and live-demo safety.
+Perform frontend demo hardening and close the gap between functional completeness and live-demo safety.
+
+## Assigned Agent
+
+Claude Code (Frontend)
 
 ## Ownership
 
 Files:
-- app-wide fixes as needed
+- frontend-facing fixes as needed
 - `execution/checklists/01-qa-and-demo-checklist.md` may be updated with findings
+
+## Frontend Boundary
+
+- Route backend defects back to the owning backend task rather than patching business logic in UI code.
+- Focus this task on layout stability, visible polish, interaction safety, and demo rehearsal.
 
 ## Dependencies
 
@@ -16,7 +25,7 @@ Files:
 
 ## Must Do
 
-- eliminate console errors in primary flows
+- eliminate frontend-originated console errors in primary flows
 - audit layout stability
 - verify first paint and preload behavior
 - rehearse reset and all presets
