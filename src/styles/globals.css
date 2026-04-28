@@ -1,0 +1,57 @@
+@import "@fontsource-variable/geist/index.css";
+@import "@fontsource-variable/geist-mono/index.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --frame-width: 390px;
+  --frame-height: 844px;
+  --status-bar-height: 44px;
+  --home-indicator-height: 34px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  font-family: theme("fontFamily.sans");
+  font-size: 16px;
+  line-height: 1.4;
+  color: theme("colors.text.primary");
+  background-color: theme("colors.bg.canvas");
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  body {
+    overflow: hidden;
+  }
+}
+
+/* Hide scrollbars inside the phone-frame content area while keeping scroll behavior. */
+.frame-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.frame-scroll::-webkit-scrollbar {
+  display: none;
+}
