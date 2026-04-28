@@ -14,7 +14,7 @@ Rule:
 
 ## Wave 2
 
-- [ ] T004 Store and domain foundation
+- [x] T004 Store and domain foundation
 - [ ] T005 Demo controls shell
 
 ## Wave 3
