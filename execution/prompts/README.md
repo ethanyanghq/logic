@@ -21,3 +21,4 @@ These prompts preserve the same product target defined in [PRD_Logic.md](/Users/
 4. Do not merge multiple prompts into one run unless the relevant task docs explicitly allow wider scope.
 5. Do not change product behavior, product scope, or the frontend/backend ownership split.
 6. If an execution prompt conflicts with a contract, the contract wins.
+7. When a task is fully complete, update the matching checkbox in `execution/checklists/02-task-status-checklist.md`.

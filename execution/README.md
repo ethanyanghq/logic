@@ -36,6 +36,8 @@ Use this packet to:
   Agent-ready implementation tasks with narrow ownership and acceptance criteria.
 - `checklists/01-qa-and-demo-checklist.md`
   QA, regression, and live-demo validation steps.
+- `checklists/02-task-status-checklist.md`
+  Shared task completion checklist used by both agents.
 
 ## Operating Rules For Coding Agents
 

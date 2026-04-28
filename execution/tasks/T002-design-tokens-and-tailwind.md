@@ -38,3 +38,7 @@ Files:
 ## Verification
 
 - inspect token usage in sample primitives and shell
+
+## Execution Notes
+
+- 2026-04-27 execution touched `src/App.tsx` outside the stated ownership to add a token sampler in the existing T001 placeholder. Tokens were verified, but this file was not in the assigned edit set and should have been left to T003. Future T002 re-runs should verify tokens via build/typecheck output only and not edit `src/App.tsx`.

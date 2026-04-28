@@ -5,6 +5,7 @@ Use these prompts exactly as written. They are for Codex only and cover the back
 These prompts intentionally use "backend" to mean the in-repo state, logic, schema, preset, and validation layer. They do not authorize adding a real backend service.
 
 Maintain `execution/handoffs/codex-to-claude.md` as you complete these tasks. Claude Code reads that file before any frontend task that depends on backend-owned contracts.
+When a task is fully complete, also check its matching box in `execution/checklists/02-task-status-checklist.md`.
 
 ## T004
 
@@ -44,6 +45,7 @@ Constraints:
 When finished:
 - run any relevant local verification available for this repo
 - manually exercise onboarding, question answer, reset, and preset state transitions if possible
+- check the `T004` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - update the `## T004` section of `execution/handoffs/codex-to-claude.md`
 - in that section, summarize what changed, what you verified, and any schema/contracts/selectors/actions frontend must consume
 ```
@@ -88,6 +90,7 @@ Constraints:
 
 When finished:
 - run any relevant validation available for schemas/data
+- check the `T012` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - update the `## T012` section of `execution/handoffs/codex-to-claude.md`
 - in that section, summarize what changed, what you verified, and any schema contracts frontend must consume
 ```
@@ -128,6 +131,7 @@ Constraints:
 
 When finished:
 - run any relevant pure-function or state verification available for this repo
+- check the `T013` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - update the `## T013` section of `execution/handoffs/codex-to-claude.md`
 - in that section, summarize what changed, what you verified, and the exact selectors/actions/state that frontend should use
 ```
@@ -174,6 +178,7 @@ Constraints:
 
 When finished:
 - verify the preset payloads are coherent and internally consistent
+- check the `T016` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - update the `## T016` section of `execution/handoffs/codex-to-claude.md`
 - in that section, summarize what changed, what you verified, and the exact contract frontend should use to open each preset on the intended screen
 ```

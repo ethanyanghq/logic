@@ -3,6 +3,7 @@
 Use these prompts exactly as written. They are for Claude Code only and cover the frontend-owned tasks.
 
 Before running any prompt, ensure the backend dependencies named in the task are already landed in the repo. Frontend foundation work may begin before later backend waves, but Claude Code must read `execution/handoffs/codex-to-claude.md` before each frontend task that consumes backend-owned contracts.
+When a task is fully complete, also check its matching box in `execution/checklists/02-task-status-checklist.md`.
 
 ## T001
 
@@ -43,6 +44,7 @@ Constraints:
 When finished:
 - run any relevant local verification available for this repo
 - verify the shell in desktop and mobile modes
+- check the `T001` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -77,10 +79,12 @@ Constraints:
 - do not introduce off-system colors, gradients, or spacing
 - keep the token names aligned with the execution/design contracts
 - do not widen into component or screen work beyond what is needed to prove the tokens work
+- "prove the tokens work" means build/typecheck output and inspecting the bundled CSS — do NOT edit src/App.tsx, screens, or primitives to add token-sampler UI (a prior run drifted into App.tsx; that was out of scope)
 
 When finished:
 - run any relevant local verification available for this repo
 - confirm primitives and shell can consume named tokens
+- check the `T002` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -129,6 +133,7 @@ Constraints:
 
 When finished:
 - render or otherwise validate a primitive gallery if practical
+- check the `T003` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -167,6 +172,7 @@ Constraints:
 
 When finished:
 - test shortcut from screen, modal, and question contexts if available
+- check the `T005` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -205,6 +211,7 @@ Constraints:
 When finished:
 - test correct and incorrect paths
 - test reload mid-question and after submit if possible
+- check the `T006` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -243,6 +250,7 @@ Constraints:
 
 When finished:
 - validate a matrix question end-to-end through the question shell
+- check the `T007` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -279,6 +287,7 @@ Constraints:
 
 When finished:
 - verify the screen with seeded data or the available presets
+- check the `T008` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -314,6 +323,7 @@ Constraints:
 
 When finished:
 - verify locked and unlocked module behavior
+- check the `T009` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -353,6 +363,7 @@ Constraints:
 
 When finished:
 - verify reload behavior at each checkpoint boundary if possible
+- check the `T010` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -390,6 +401,7 @@ Constraints:
 
 When finished:
 - verify all visual question types render through typed components
+- check the `T011` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -426,6 +438,7 @@ Constraints:
 
 When finished:
 - verify daily behavior across reloads if possible
+- check the `T014` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -461,6 +474,7 @@ Constraints:
 
 When finished:
 - verify transition from final question into completion screen
+- check the `T015` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -494,6 +508,7 @@ Constraints:
 
 When finished:
 - verify the screen against available persisted and preset states
+- check the `T017` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -529,6 +544,7 @@ Constraints:
 
 When finished:
 - verify motion behavior and degraded behavior when disabled
+- check the `T018` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -568,6 +584,7 @@ Constraints:
 
 When finished:
 - verify first-use sound lag is absent if possible
+- check the `T019` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
 
@@ -604,5 +621,6 @@ Constraints:
 
 When finished:
 - report remaining issues by owner if any
+- check the `T020` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
