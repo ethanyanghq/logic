@@ -1,9 +1,4 @@
-import {
-  CONDITIONAL_REASONING_MODULE_ID,
-  FOUNDATIONS_MODULE_ID,
-  LOGICAL_FALLACIES_MODULE_ID,
-  type ModuleId,
-} from "./modules";
+import { FOUNDATIONS_MODULE_ID, type ModuleId } from "./modules";
 import type { BaselineLevel } from "./xp";
 
 export const USER_GOALS = [
@@ -49,16 +44,7 @@ export function getBaselineLevelFromDiagnosticScore(
 }
 
 export function getRecommendedStartingModule(
-  baselineLevel: BaselineLevel,
+  _baselineLevel: BaselineLevel,
 ): ModuleId {
-  if (baselineLevel === 3) {
-    return LOGICAL_FALLACIES_MODULE_ID;
-  }
-
-  if (baselineLevel === 2) {
-    return CONDITIONAL_REASONING_MODULE_ID;
-  }
-
   return FOUNDATIONS_MODULE_ID;
 }
-
