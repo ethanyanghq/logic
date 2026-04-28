@@ -29,6 +29,7 @@ Files:
 ## Must Do
 
 - encode data files to the agreed schema
+- author exactly 5 questions per module, for 20 module questions total
 - include canonical concept-primer copy in module records
 - wire module/question relationships
 - preserve the exact five top-level question types in the content schema

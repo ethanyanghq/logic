@@ -71,6 +71,7 @@ Your scope is backend only. Define canonical content schemas and normalized auth
 Implement T012 exactly:
 - integrate modules, questions, badges, and preset data into the app data layer
 - encode data files to the agreed schema
+- author the reduced module bank at exactly 5 questions per module, 20 total
 - wire module/question relationships
 - include canonical module concept-primer copy in module records
 - preserve the exact five top-level question types, with rotation/transform specs modeled as visual-question subtypes rather than a sixth type

@@ -82,7 +82,7 @@ PRD ambiguity:
 
 Execution decision:
 - Use exact question-count threshold: `ceil(totalQuestions * 0.8)`.
-- For 30-question modules, unlock threshold is 24 answered questions.
+- For 5-question modules, unlock threshold is 4 answered questions.
 
 Reason:
 - Deterministic and easy to verify.
@@ -171,7 +171,7 @@ Safe default:
 ### O2. Final question bank content
 
 Need:
-- authored and validated 120-question dataset
+- authored and validated 20-question dataset
 
 Safe default:
 - scaffold schema and integrate sample content for development

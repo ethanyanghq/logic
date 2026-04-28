@@ -158,7 +158,7 @@ Rules:
   - Conditional Reasoning
   - Logical Fallacies
   - Visual Patterns
-- Each module MUST contain 30 authored questions.
+- Each module MUST contain exactly 5 authored questions.
 - Foundations MUST be unlocked by default.
 - Other modules MUST unlock in sequence based on prerequisite completion.
 - Locked modules MUST remain visible but non-enterable.
@@ -167,6 +167,7 @@ Rules:
 ## 8. Question Bank Contract
 
 - Questions MUST be static build-time data.
+- The authored module question bank MUST contain exactly 20 questions total.
 - Visual questions MUST use structured JSON specs, not image files.
 - Visual puzzles MUST render as deterministic SVG.
 - Every question MUST have exactly one defensible correct answer.

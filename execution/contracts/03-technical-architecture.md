@@ -140,7 +140,7 @@ Each module record MUST include:
 - `accentShape`
 - `difficulty`
 - `conceptPrimer`
-- `questionIds`
+- `questionIds` containing exactly 5 authored question IDs
 - `prerequisiteModuleId` when applicable
 
 ### Question Schema

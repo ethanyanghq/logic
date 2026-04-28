@@ -19,7 +19,7 @@ Rule:
 
 ## Wave 3
 
-- [ ] T006 Question engine shell
+- [x] T006 Question engine shell
 - [ ] T007 First visual puzzle renderer
 
 ## Wave 4

@@ -19,17 +19,82 @@ import {
   TextArea,
   Toast,
 } from "./components/ui";
+import { QuestionScreen } from "./screens/question";
+import type { TextMultipleChoiceQuestion } from "./screens/question";
+
+type View = "gallery" | "question";
 
 export function App() {
+  const [view, setView] = useState<View>("gallery");
+  const [questionIndex, setQuestionIndex] = useState(0);
+
   return (
     <PhoneFrame>
-      <HomeHeader />
-      <PrimitiveGallery />
+      {view === "gallery" ? (
+        <>
+          <HomeHeader onOpenQuestion={() => setView("question")} />
+          <PrimitiveGallery />
+        </>
+      ) : (
+        <QuestionScreen
+          question={SAMPLE_QUESTIONS[questionIndex % SAMPLE_QUESTIONS.length]}
+          context="module"
+          moduleId="foundations"
+          questionNumber={(questionIndex % SAMPLE_QUESTIONS.length) + 1}
+          totalQuestions={SAMPLE_QUESTIONS.length}
+          moduleLabel="Foundations"
+          onContinue={() => {
+            setQuestionIndex((idx) => idx + 1);
+          }}
+          onExit={() => setView("gallery")}
+        />
+      )}
     </PhoneFrame>
   );
 }
 
-function HomeHeader() {
+const SAMPLE_QUESTIONS: TextMultipleChoiceQuestion[] = [
+  {
+    id: "preview_foundations_q001",
+    moduleId: "foundations",
+    type: "multiple-choice-text",
+    difficulty: 1,
+    prompt:
+      "All philosophers are mortal. Socrates is a philosopher. Which conclusion follows?",
+    options: [
+      "Socrates is mortal.",
+      "Some mortals are philosophers.",
+      "All mortals are philosophers.",
+      "No mortals are philosophers.",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Universal premise plus a particular instance yields the corresponding particular conclusion: Socrates inherits mortality.",
+    tags: ["syllogism", "deduction"],
+    dailyEligible: true,
+  },
+  {
+    id: "preview_foundations_q002",
+    moduleId: "foundations",
+    type: "multiple-choice-text",
+    difficulty: 2,
+    prompt:
+      "If every artist is creative, and Mira is creative, what can we conclude about Mira?",
+    options: [
+      "Mira is definitely an artist.",
+      "Mira may or may not be an artist.",
+      "Mira is not an artist.",
+      "All creatives are artists.",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Affirming the consequent is a fallacy. Creativity is necessary for artists, not exclusive to them — Mira's status remains undetermined.",
+    tags: ["conditional", "fallacy"],
+    dailyEligible: false,
+  },
+];
+
+function HomeHeader({ onOpenQuestion }: { onOpenQuestion: () => void }) {
   return (
     <header className="flex items-start justify-between gap-4 px-5 pb-2 pt-5">
       <div className="flex flex-col gap-1">
@@ -40,6 +105,11 @@ function HomeHeader() {
         <p className="text-body text-text-secondary">
           Demo controls live in the gear · ⌘/Ctrl + Shift + R also opens them.
         </p>
+        <div className="mt-2">
+          <Button size="sm" variant="secondary" onClick={onOpenQuestion}>
+            Open question shell
+          </Button>
+        </div>
       </div>
       <DemoControlsTrigger variant="ghost" />
     </header>
