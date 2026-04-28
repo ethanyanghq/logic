@@ -10,7 +10,7 @@ Rule:
 
 - [x] T001 App shell and layout
 - [x] T002 Design tokens and Tailwind
-- [ ] T003 UI primitives
+- [x] T003 UI primitives
 
 ## Wave 2
 
