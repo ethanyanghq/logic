@@ -2,7 +2,7 @@
 
 This document defines the recommended execution order, dependency graph, and parallelization strategy.
 
-All waves preserve the same product target. The change here is ownership only:
+All waves preserve the simplified demo target:
 - Codex executes backend tasks
 - Claude Code executes frontend tasks
 
@@ -83,7 +83,6 @@ Scope:
 - skeleton/loading behavior
 - answer submission lifecycle
 - explanation reveal
-- first visual puzzle renderer
 
 Dependencies:
 - Waves 1-2
@@ -93,7 +92,6 @@ Backend work:
 
 Frontend work:
 - Task T006 question engine shell
-- Task T007 first puzzle renderer
 
 Gate to next wave:
 - one full question loop works end-to-end
@@ -124,26 +122,25 @@ Notes:
 
 Gate to next wave:
 - first-time user can complete onboarding and land on personalized home
-- module entry and return flow works
+- Foundations entry and return flow works
 
-## Wave 5: Content And Visual Breadth
+## Wave 5: Simplified Demo Scope Hold
 
 Scope:
-- remaining visual puzzle renderers
-- module content wiring
+- no additional renderer breadth
+- keep delivery focused on the single playable module and preset-backed demo states
 
 Dependencies:
 - Waves 3-4
 
 Backend work:
-- none beyond the T012 contracts already landed in Wave 4
+- none
 
 Frontend work:
-- Task T011 remaining puzzle renderers
+- none
 
 Gate to next wave:
-- all four modules can be navigated
-- all required question types are supported
+- no visual-question work remains in active scope
 
 ## Wave 6: Progression Systems
 
@@ -190,6 +187,7 @@ Frontend work:
 Gate to next wave:
 - all presets load quickly and route correctly
 - profile reflects preset data correctly
+- completion-ready and power-user states can be demonstrated without replaying full progression
 
 ## Wave 8: Motion, Sound, And Polish
 

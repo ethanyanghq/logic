@@ -228,30 +228,8 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T007-first-visual-puzzle-renderer.md
 
-Dependency T006 must already be landed.
-
-Your scope is frontend only.
-
-Implement T007 exactly:
-- build the first SVG puzzle renderer
-- integrate matrix puzzle rendering into the shared question shell
-- render from structured JSON spec
-- keep output deterministic
-- apply neural palette and solar active semantics
-
-Edit only:
-- src/components/puzzles/*
-- related typed spec helpers used by the renderer
-
-Constraints:
-- no raster assets
-- same spec must always produce the same SVG output
-- do not move content-schema ownership into the renderer layer
-
-When finished:
-- validate a matrix question end-to-end through the question shell
-- check the `T007` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
-- summarize what changed, what you verified, and any blockers
+This task is de-scoped in the simplified demo build.
+Do not implement visual-question renderer work unless the execution packet is revised again.
 ```
 
 ## T008
@@ -273,7 +251,7 @@ Your scope is frontend only. Consume store-driven data from backend selectors/ac
 
 Implement T008 exactly:
 - build the home/dashboard screen
-- include greeting/date, streak, XP and level, daily challenge card, continue-learning hero, all modules, recent activity, and weekly heatmap
+- include greeting/date, streak, XP and level, daily challenge card, continue-learning hero, the playable Foundations card, three preview-only module cards, recent activity, and weekly heatmap
 - ensure the hero surfaces reflect real store state
 
 Edit only:
@@ -306,23 +284,23 @@ Read these files first:
 
 Dependencies T003, T004, and T012 must already be landed.
 
-Your scope is frontend only. Consume lock/unlock, module metadata, and progress state from backend-owned contracts.
+Your scope is frontend only. Consume playable-module metadata and progress state from backend-owned contracts.
 
 Implement T009 exactly:
 - build the module detail screen
 - include hero header, progress/stat surfaces, concept primer from canonical module data, and start/continue CTA
-- implement locked-module toast behavior without breaking flow
+- ensure only the playable module resolves into module detail and question flow
 
 Edit only:
 - src/screens/module/*
 
 Constraints:
-- do not redefine unlock logic in the screen layer
-- unlocked modules must route into questions
-- locked modules must explain the prerequisite cleanly
+- do not invent locked progression behavior in the screen layer
+- the playable module must route into questions
+- preview-only modules must not resolve into module detail or question flow
 
 When finished:
-- verify locked and unlocked module behavior
+- verify playable-module routing behavior
 - check the `T009` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
@@ -350,7 +328,7 @@ Implement T010 exactly:
 - build the sample puzzle step
 - build the 5-question diagnostic
 - build profile setup
-- build the recommendation highlight on first-home reveal
+- build the Foundations recommendation highlight on first-home reveal
 
 Edit only:
 - src/screens/onboarding/*
@@ -380,29 +358,8 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T011-remaining-puzzle-renderers.md
 
-Dependency T007 must already be landed.
-
-Your scope is frontend only.
-
-Implement T011 exactly:
-- add the remaining visual question renderers
-- add the missing visual multiple-choice renderer path
-- support sequence completion, odd one out, and rotation/transform visual subtypes
-- add any shared visual spec helpers needed by these renderers
-
-Edit only:
-- src/components/puzzles/*
-
-Constraints:
-- keep all outputs deterministic SVG
-- preserve the neural/solar palette rules
-- preserve exactly five top-level question types rather than inventing a sixth renderer-facing type
-- do not absorb data-schema ownership into renderer code
-
-When finished:
-- verify all visual question types render through typed components
-- check the `T011` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
-- summarize what changed, what you verified, and any blockers
+This task is de-scoped in the simplified demo build.
+Do not implement visual-question renderer work unless the execution packet is revised again.
 ```
 
 ## T014
@@ -457,11 +414,11 @@ Read these files first:
 
 Dependencies T009 and T013 must already be landed.
 
-Your scope is frontend only. Consume reward summaries, badge state, and next-module information from backend contracts.
+Your scope is frontend only. Consume reward summaries, badge state, and completion metadata from backend contracts.
 
 Implement T015 exactly:
 - build the full-screen module completion experience
-- include completion takeover, stat reveal sequence, badge reveal area, and next-module/back-home CTAs
+- include completion takeover, stat reveal sequence, badge reveal area, and a back-home CTA
 
 Edit only:
 - src/screens/module/*

@@ -66,26 +66,24 @@ PRD ambiguity:
 - Baseline level affects recommended starting module, but not the exact mapping.
 
 Execution decision:
-- Recommendations:
-  - `level 1 -> Foundations`
-  - `level 2 -> Conditional Reasoning`
-  - `level 3 -> Logical Fallacies`
-- Visual Patterns is never the first recommendation.
+- Foundations is always the recommended starting module in the simplified demo build.
+- Baseline level is still computed and stored, but it does not change the starting-module recommendation.
 
 Reason:
-- Keeps recommendation consistent with module sequencing and avoids starting with the least text-guided module.
+- Foundations is the only playable module, so the recommendation must stay actionable.
 
-### A6. Unlock threshold rounding
+### A6. Preview-only module behavior
 
 PRD ambiguity:
-- Modules unlock at `>=80% complete`, but rounding is not specified.
+- The PRD describes sequential unlocks across four modules, but the simplified demo keeps only one module playable.
 
 Execution decision:
-- Use exact question-count threshold: `ceil(totalQuestions * 0.8)`.
-- For 5-question modules, unlock threshold is 4 answered questions.
+- Foundations is the only playable module.
+- Conditional Reasoning, Logical Fallacies, and Visual Patterns remain visible as preview cards.
+- Preview cards do not use locked progression logic and do not open question flow.
 
 Reason:
-- Deterministic and easy to verify.
+- This preserves product breadth visually while removing cross-module progression work from the demo build.
 
 ### A7. Streak freeze earning rule
 
@@ -143,18 +141,29 @@ Execution decision:
 - "Frontend" means the visible app shell, screens, components, animation, sound integration, and SVG presentation layer.
 - This ownership split MUST NOT add any external service or alter product behavior.
 
-### A12. Rotation/transform question classification
+### A12. Visual-question scope reduction
 
 PRD ambiguity:
-- The product defines exactly five top-level question types.
-- The execution tasks also referenced a "rotation/transform puzzle," which could be misread as a sixth type.
+- The PRD includes visual question types, but the simplified demo scope prioritizes minimum engineering time.
 
 Execution decision:
-- Keep exactly five top-level question types.
-- Treat rotation/transform content as a structured visual subtype used inside `multiple choice visual` or other visual-spec-driven questions, not as a sixth top-level type.
+- Visual-based questions are removed from the simplified demo build.
+- The only authored playable-module questions are text multiple-choice questions.
 
 Reason:
-- This preserves the product contract while still giving the renderer layer a concrete implementation target for rotation-based visuals.
+- The current shared question shell already supports the text path and this preserves the strongest demo loop for the least engineering cost.
+
+### A13. Preset-driven demo progression
+
+PRD ambiguity:
+- The PRD emphasizes live progression, but the simplified demo target prioritizes polish and fast state changes.
+
+Execution decision:
+- Completion-ready, high-progress, and power-user moments SHOULD primarily be reached through presets.
+- Live play still needs to support the core Foundations loop end to end.
+
+Reason:
+- Presets preserve demo impressiveness while avoiding unnecessary dependency on fully earned state transitions during rehearsal and live demos.
 
 ## 2. Still Open But Non-Blocking
 
@@ -171,7 +180,7 @@ Safe default:
 ### O2. Final question bank content
 
 Need:
-- authored and validated 20-question dataset
+- authored and validated 5-question playable-module dataset plus preview-card metadata for the other three modules
 
 Safe default:
 - scaffold schema and integrate sample content for development
@@ -187,11 +196,12 @@ Safe default:
 ## 3. Blocking If Changed Later
 
 Changing these after implementation will cause rework:
-- daily challenge not affecting module progress
 - baseline level thresholds
 - module recommendation mapping
 - streak freeze earning/consumption rule
-- unlock threshold rounding
+- preview-only module behavior
+- visual-question removal
+- preset-driven demo progression
 
 ## 4. Decision Request Template
 

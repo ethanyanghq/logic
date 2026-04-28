@@ -20,7 +20,7 @@ Rule:
 ## Wave 3
 
 - [x] T006 Question engine shell
-- [ ] T007 First visual puzzle renderer
+- T007 First visual puzzle renderer (de-scoped by simplified demo contract)
 
 ## Wave 4
 
@@ -31,7 +31,7 @@ Rule:
 
 ## Wave 5
 
-- [ ] T011 Remaining puzzle renderers
+- T011 Remaining puzzle renderers (de-scoped by simplified demo contract)
 
 ## Wave 6
 

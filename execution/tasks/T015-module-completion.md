@@ -24,7 +24,8 @@ Files:
 - completion takeover
 - stat reveal sequence
 - badge reveal area
-- next-module and back-home CTAs
+- back-home CTA
+- optional upcoming-topics preview treatment that does not imply another playable module
 
 ## Done When
 

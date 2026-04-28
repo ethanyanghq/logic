@@ -26,7 +26,7 @@ Files:
 - sample puzzle
 - 5-question diagnostic
 - profile setup
-- recommendation highlight on home reveal
+- Foundations recommendation highlight on home reveal
 
 ## Done When
 

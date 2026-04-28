@@ -26,7 +26,7 @@ Files:
 - XP and level
 - daily challenge card
 - continue-learning hero
-- all modules
+- Foundations card plus three preview-only module cards
 - recent activity
 - weekly heatmap
 

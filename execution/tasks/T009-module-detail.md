@@ -2,7 +2,7 @@
 
 ## Objective
 
-Implement the module detail screen and lock-state behavior.
+Implement the playable module detail screen and preview-module routing behavior.
 
 ## Assigned Agent
 
@@ -25,9 +25,9 @@ Files:
 - progress/stat surfaces
 - concept primer from canonical module data
 - start/continue CTA
-- locked-module toast behavior
+- ensure only the playable module resolves into module detail and question flow
 
 ## Done When
 
-- unlocked modules route into questions
-- locked modules explain the prerequisite without breaking flow
+- the playable module routes into questions
+- preview-only modules do not resolve into module detail or question flow

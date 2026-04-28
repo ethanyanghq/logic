@@ -25,7 +25,6 @@ src/
   components/
     ui/
     layout/
-    puzzles/
     feedback/
     demo/
   screens/
@@ -47,7 +46,6 @@ src/
 
 Rules:
 - `components/ui` owns reusable primitives only.
-- `components/puzzles` owns renderers and puzzle-specific typed SVG logic.
 - `screens/*` own screen composition, not cross-screen business logic.
 - `lib/*` owns pure domain logic and helpers.
 - `store/*` owns persisted app state and mutations.
@@ -140,8 +138,13 @@ Each module record MUST include:
 - `accentShape`
 - `difficulty`
 - `conceptPrimer`
-- `questionIds` containing exactly 5 authored question IDs
-- `prerequisiteModuleId` when applicable
+- `isPlayable`
+- `questionIds`
+
+Module rule:
+- exactly one module record MUST have `isPlayable: true`
+- the playable module MUST contain exactly 5 authored question IDs
+- preview-only module records MAY use an empty `questionIds` array
 
 ### Question Schema
 
@@ -158,8 +161,7 @@ Each question record MUST include:
 - `dailyEligible`
 
 Question-type rule:
-- top-level `type` values MUST remain the five product-defined question types
-- rotation/transform content is a structured visual-spec subtype, not a sixth top-level question type
+- only text multiple-choice questions are in scope for the simplified demo build
 
 ### Badge Schema
 
@@ -193,37 +195,23 @@ Rules:
 - these modules SHOULD be side-effect free
 - UI code MUST NOT reimplement the same business rule ad hoc
 
-## 8. Visual Puzzle Architecture
-
-- All visual puzzles MUST be rendered from structured JSON spec.
-- `VisualPuzzle` SHOULD dispatch by question type/spec subtype.
-- Renderer outputs MUST be deterministic SVG.
-- Theme colors SHOULD be injected from tokens, not hardcoded at renderer call sites.
-
-Suggested renderer split:
-- `MultipleChoiceVisualRenderer`
-- `MatrixPuzzleRenderer`
-- `SequencePuzzleRenderer`
-- `OddOneOutRenderer`
-- `RotationPuzzleRenderer` as a visual-spec helper where needed
-- shared geometry/spec helpers
-
-## 9. Demo/Reset Architecture
+## 8. Demo/Reset Architecture
 
 - Keyboard shortcut handling SHOULD live in a reusable hook.
 - Demo menu UI SHOULD live under `components/demo`.
 - Preset state definitions SHOULD live in `data/presets.ts`.
 - Reset and preset application MUST work without page reload.
 - Global skip-animations mode SHOULD feed both motion and sound suppression.
+- Presets SHOULD be treated as the primary route into completion-ready and power-user demo states.
 
-## 10. Performance Contract
+## 9. Performance Contract
 
 - All static content SHOULD be imported at build time.
 - Screens MAY be code-split if needed.
 - Fonts and sound assets SHOULD be preloaded.
 - Skeletons SHOULD reserve final space to prevent layout shift.
 
-## 11. Testing And Verification Expectations
+## 10. Testing And Verification Expectations
 
 Even if formal tests are not fully built at first, the architecture SHOULD make room for:
 - schema validation for data files
@@ -231,7 +219,7 @@ Even if formal tests are not fully built at first, the architecture SHOULD make 
 - smoke verification of preset loading
 - strict type checks
 
-## 12. Agent Implementation Rules
+## 11. Agent Implementation Rules
 
 - Each agent task SHOULD own a narrow file set.
 - Shared contracts MUST be centralized before feature screens are built.

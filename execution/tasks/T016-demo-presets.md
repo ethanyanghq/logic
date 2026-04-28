@@ -2,7 +2,7 @@
 
 ## Objective
 
-Implement the five preset states, normalized payloads, and preset loaders consumed by the demo UI.
+Implement the five preset states, normalized payloads, and preset loaders consumed by the demo UI as the primary route into advanced demo moments.
 
 ## Assigned Agent
 
@@ -23,6 +23,7 @@ Files:
 ## Coordination Note
 
 - Preset target routes MUST follow the shared routing contract; destination screens do not all need to be visually complete before backend preset payloads are defined.
+- Presets are the intended path into completion-ready and power-user states in the simplified demo build.
 
 ## Must Do
 

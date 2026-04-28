@@ -2,9 +2,12 @@
 
 This folder converts [PRD_Logic.md](/Users/ethanyang/Documents/GitHub/logic/PRD_Logic.md) into agent-ready implementation docs for Codex, Claude Code, and similar coding agents.
 
-The product target is unchanged. This packet now adds an explicit delivery split:
+This packet now defines a simplified demo target optimized for delivery speed:
 - Codex owns backend work
 - Claude Code owns frontend work
+- the demo keeps one fully playable module
+- the remaining three modules are visible preview cards
+- high-value states are primarily reached through presets rather than fully earned live progression
 
 For this prototype, "backend" means the app's data, state, business-logic, preset, and schema layer inside the same repo. It does not mean adding a real backend service.
 
@@ -17,6 +20,7 @@ Use this packet to:
 - constrain agent behavior
 - break the work into merge-safe tasks
 - standardize acceptance criteria for engineering and design review
+- keep the demo impressive while intentionally reducing implementation scope
 
 ## Packet Structure
 

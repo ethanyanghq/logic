@@ -34,14 +34,14 @@ Use this checklist at the end of each wave and before any live demo.
 - Streak and XP render with correct values
 - Daily challenge card reflects incomplete/completed state correctly
 - Continue-learning hero points to the right module/question
-- Locked modules are visible and visually distinct
+- Preview-only module cards are visible and clearly marked as non-playable
 - Weekly heatmap renders with coherent activity intensity
 
 ## 5. Module Checks
 
 - Module detail shows stats, primer, and CTA
-- Locked module tap shows prerequisite toast
-- Unlock occurs only after prerequisite threshold is met
+- Only Foundations enters module detail and question flow
+- Preview-only modules do not behave like locked progression
 - Re-entering a module resumes at next unanswered question
 
 ## 6. Question Engine Checks
@@ -94,9 +94,9 @@ Run this exact walkthrough:
 3. Show personalized home and daily challenge card
 4. Enter module detail
 5. Answer a question correctly
-6. Show progress/profile
+6. Return home and confirm preview-only module cards are present
 7. Load `Module completion ready`
-8. Finish module and show completion screen
+8. Show the completion screen
 9. Load `Power user`
 10. Show badges, streak, and populated progress views
 

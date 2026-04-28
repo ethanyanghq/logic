@@ -2,29 +2,13 @@
 
 ## Objective
 
-Implement the remaining visual question renderers and shared geometry helpers, including the missing product-defined visual multiple-choice path.
+De-scoped in the simplified demo build.
 
 ## Assigned Agent
 
 Claude Code (Frontend)
 
-## Ownership
+## Scope Note
 
-Files:
-- `src/components/puzzles/*`
-
-## Dependencies
-
-- T007
-
-## Must Do
-
-- multiple choice visual renderer path
-- sequence completion
-- odd one out
-- rotation/transform visual subtype support
-- any shared visual spec helpers
-
-## Done When
-
-- all product-defined visual question types in scope render via typed SVG components without inventing a sixth top-level question type
+Visual-based questions are out of scope for the simplified demo target.
+No implementation work should be performed for this task unless the execution packet is revised again.

@@ -29,13 +29,13 @@ Files:
 ## Must Do
 
 - encode data files to the agreed schema
-- author exactly 5 questions per module, for 20 module questions total
+- author exactly 5 text multiple-choice questions for the playable module
 - include canonical concept-primer copy in module records
 - wire module/question relationships
-- preserve the exact five top-level question types in the content schema
+- mark exactly one module as playable and represent the other three as preview-only module cards
 - flag curated daily-eligible questions
 
 ## Done When
 
-- app can navigate all modules using static data only
+- app can navigate the playable module and render the three preview cards using static data only
 - schemas are stable enough for manual authoring and validation

@@ -23,7 +23,7 @@ This document converts the PRD into implementation rules. Product behavior defin
 - daily challenge
 - XP, streaks, badges
 - demo presets and reset tools
-- curated static content and visual puzzles
+- curated static text content
 - accessibility hygiene for primary interaction paths
 
 ### Out Of Scope
@@ -88,13 +88,13 @@ The store MUST expose:
 - MUST NOT count onboarding question activity toward module progress or module question totals.
 - MUST collect display name and avatar before entering home.
 - MUST compute baseline level from diagnostic score.
-- MUST highlight a recommended starting module on first home reveal.
+- MUST highlight the one playable module on first home reveal.
 
 ### Home / Dashboard
 
 - MUST be the default post-onboarding screen.
 - MUST show greeting, current date, streak, XP, level, and daily challenge above the fold.
-- MUST show continue-learning module and all modules list.
+- MUST show continue-learning module and all module cards.
 - MUST show recent activity and weekly heatmap below the fold.
 - MUST reflect real persisted state on reload.
 
@@ -103,11 +103,12 @@ The store MUST expose:
 - MUST show title, subtitle, icon/shape, difficulty, progress, stats, and CTA.
 - MUST show concept primer before the first module question is answered.
 - MUST collapse primer after module start into a review affordance.
-- MUST respect locked/unlocked state.
+- MUST only exist for the one playable module.
+- Preview-only modules MUST remain visible on home but MUST NOT enter locked progression or question flow.
 
 ### Question Screen
 
-- MUST support all five question types through one shared shell.
+- MUST support the text multiple-choice demo question flow through one shared shell.
 - MUST preserve in-progress selection if the app is backgrounded or reloaded before submit.
 - MUST disable submit until an option is selected.
 - MUST preserve answered state once submitted.
@@ -117,7 +118,7 @@ The store MUST expose:
 ### Module Completion
 
 - MUST trigger immediately after the final module question result flow.
-- MUST show stats, reward totals, newly earned badges, and next-module CTA.
+- MUST show stats, reward totals, newly earned badges if any, and a back-home CTA.
 - MUST be a full-screen takeover, not a toast.
 
 ### Progress / Profile
@@ -158,18 +159,15 @@ Rules:
   - Conditional Reasoning
   - Logical Fallacies
   - Visual Patterns
-- Each module MUST contain exactly 5 authored questions.
-- Foundations MUST be unlocked by default.
-- Other modules MUST unlock in sequence based on prerequisite completion.
-- Locked modules MUST remain visible but non-enterable.
-- Tapping a locked module MUST show a toast explaining the prerequisite.
+- Foundations MUST be the only playable module in the simplified demo build.
+- Foundations MUST contain exactly 5 authored questions.
+- The other three modules MUST remain visible as preview cards.
+- Preview cards MUST be clearly marked as non-playable and MUST NOT use locked progression behavior.
 
 ## 8. Question Bank Contract
 
 - Questions MUST be static build-time data.
-- The authored module question bank MUST contain exactly 20 questions total.
-- Visual questions MUST use structured JSON specs, not image files.
-- Visual puzzles MUST render as deterministic SVG.
+- The authored playable-module question bank MUST contain exactly 5 questions total.
 - Every question MUST have exactly one defensible correct answer.
 - Every question MUST include a concise explanation.
 - Daily challenge eligibility MUST be an explicit boolean on the question record.

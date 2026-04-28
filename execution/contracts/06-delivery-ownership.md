@@ -1,6 +1,6 @@
 # Delivery Ownership
 
-This document defines the execution split between Codex and Claude Code. It changes ownership only. It does not change product scope, product behavior, or the target demo.
+This document defines the execution split between Codex and Claude Code for the simplified demo contract captured in `/execution`.
 
 ## 1. Core Rule
 
@@ -32,7 +32,6 @@ Frontend work means the visible and interaction-facing layer:
 - screen composition
 - UI primitives
 - question presentation
-- visual puzzle SVG rendering
 - motion behavior
 - sound integration
 - toasts, sheets, modals, and completion surfaces
@@ -97,4 +96,4 @@ Claude Code handoff back to Codex SHOULD include:
 
 ## 8. Non-Negotiable Constraint
 
-This split is an execution constraint, not a product change. If an ownership decision would weaken the demo, alter user-visible behavior, or cut scope, the ownership decision is wrong and the docs must be revised without changing the product target.
+This split is an execution constraint inside the simplified demo target. If an ownership decision would weaken the agreed demo contract or re-expand scope unintentionally, the ownership decision is wrong and the docs must be revised.
