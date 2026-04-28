@@ -19,7 +19,7 @@ const toneStyles: Record<ProgressTone, string> = {
 export function ProgressBar({
   value,
   tone = "solar",
-  height = 6,
+  height = 8,
   className,
   ariaLabel,
 }: ProgressBarProps) {

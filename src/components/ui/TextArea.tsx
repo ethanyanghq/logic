@@ -14,7 +14,7 @@ const fieldBase = cn(
   "transition duration-150 ease-out",
   "focus:outline-none focus:border-border-solar focus:ring-2 focus:ring-border-solar",
   "disabled:opacity-40 disabled:cursor-not-allowed",
-  "min-h-[96px] resize-y",
+  "min-h-24 resize-y",
 );
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(

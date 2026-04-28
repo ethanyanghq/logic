@@ -30,6 +30,7 @@ For each completed section, capture:
 - Notes:
   No preset catalog or canonical content data landed in T004; `applyPreset` already accepts normalized partial state patches and T016 can supply the five real presets on top of this contract.
   `selectHasHydrated` should gate first-launch routing so the UI does not decide onboarding vs home before persisted state is available.
+  Streak-freeze recomputation consumes the freeze by bridging the missed day only; it must not mark the current day as active before an answer is submitted.
 
 ## T012
 

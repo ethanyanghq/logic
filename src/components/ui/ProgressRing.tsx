@@ -24,7 +24,7 @@ const toneToColor: Record<ProgressTone, string> = {
 export function ProgressRing({
   value,
   size = 64,
-  stroke = 6,
+  stroke = 8,
   tone = "solar",
   children,
   className,

@@ -1,4 +1,9 @@
-import { getHoursSince, getLocalDateDistanceInDays, type LocalDateString } from "./dates";
+import {
+  getHoursSince,
+  getLocalDateDistanceInDays,
+  getPriorLocalDates,
+  type LocalDateString,
+} from "./dates";
 
 export const STREAK_MILESTONES = [3, 7, 14, 30, 100] as const;
 
@@ -129,10 +134,13 @@ export function recomputeStreakForDate(
   }
 
   if (dayDistance === 2 && snapshot.availableFreezes > 0) {
+    const bridgedActiveDate =
+      getPriorLocalDates(referenceDate, 2).at(-1) ?? snapshot.lastActiveDate;
+
     return {
       ...snapshot,
       availableFreezes: snapshot.availableFreezes - 1,
-      lastActiveDate: referenceDate,
+      lastActiveDate: bridgedActiveDate,
     };
   }
 
@@ -179,4 +187,3 @@ function finalizeRecordedActivity(
     reset,
   };
 }
-

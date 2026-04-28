@@ -56,7 +56,7 @@ export function Modal({
       />
       <div
         className={cn(
-          "relative z-10 w-full max-w-[320px] rounded-2xl border border-border-strong bg-bg-glass",
+          "relative z-10 w-full max-w-80 rounded-2xl border border-border-strong bg-bg-glass",
           "p-6 text-text-primary backdrop-blur-md shadow-frame",
           "animate-[ui-modal-in_220ms_ease-out_forwards]",
           className,

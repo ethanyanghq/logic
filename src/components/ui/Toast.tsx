@@ -58,7 +58,7 @@ export function Toast({
     >
       <div
         className={cn(
-          "pointer-events-auto flex w-full max-w-[320px] items-start gap-3 rounded-2xl border bg-bg-glass",
+          "pointer-events-auto flex w-full max-w-80 items-start gap-3 rounded-2xl border bg-bg-glass",
           "px-4 py-3 text-text-primary backdrop-blur-md shadow-frame",
           "animate-[ui-toast-in_220ms_ease-out_forwards]",
           toneStyles[tone],

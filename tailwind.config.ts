@@ -24,6 +24,7 @@ const config: Config = {
       xl: "20px",
       "2xl": "28px",
       "3xl": "36px",
+      screen: "40px",
       frame: "48px",
       full: "9999px",
     },

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { DemoControlsTrigger } from "./components/demo";
 import { PhoneFrame } from "./components/layout";
 import {
   Avatar,
@@ -22,8 +23,26 @@ import {
 export function App() {
   return (
     <PhoneFrame>
+      <HomeHeader />
       <PrimitiveGallery />
     </PhoneFrame>
+  );
+}
+
+function HomeHeader() {
+  return (
+    <header className="flex items-start justify-between gap-4 px-5 pb-2 pt-5">
+      <div className="flex flex-col gap-1">
+        <span className="text-caption uppercase tracking-wider text-text-tertiary">
+          Home
+        </span>
+        <h1 className="text-h1 text-text-primary">Welcome back</h1>
+        <p className="text-body text-text-secondary">
+          Demo controls live in the gear · ⌘/Ctrl + Shift + R also opens them.
+        </p>
+      </div>
+      <DemoControlsTrigger variant="ghost" />
+    </header>
   );
 }
 
@@ -51,6 +70,7 @@ function PrimitiveGallery() {
         title="UI primitives"
         subtitle="Eclipse Glass primitive set with hover, press, focus, and disabled states."
       />
+
 
       <Section eyebrow="Buttons" title="Variants & sizes">
         <div className="flex flex-wrap gap-3">

@@ -122,15 +122,15 @@ export function StatusBar() {
       className="sticky top-0 z-20 flex h-[var(--status-bar-height)] w-full items-end justify-between px-6 pb-1 text-text-primary"
       aria-label="Status bar"
     >
-      <div className="flex w-[80px] justify-start">
+      <div className="flex w-20 justify-start">
         <span
-          className="font-mono tabular-nums text-[15px] font-semibold leading-none"
+          className="text-mono tabular-nums leading-none"
           aria-label={`Current time ${time}`}
         >
           {time}
         </span>
       </div>
-      <div className="flex w-[80px] items-center justify-end gap-1.5 text-text-primary">
+      <div className="flex w-20 items-center justify-end gap-2 text-text-primary">
         <SignalIcon />
         <WifiIcon />
         <BatteryIcon />
