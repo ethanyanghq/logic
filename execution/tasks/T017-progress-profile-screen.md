@@ -2,31 +2,13 @@
 
 ## Objective
 
-Implement the deeper progress screen and data visualizations.
+This task is de-scoped in the reduced core-loop packet.
 
 ## Assigned Agent
 
 Claude Code (Frontend)
 
-## Ownership
+## Status
 
-Files:
-- `src/screens/progress/*`
-
-## Dependencies
-
-- T008
-- T013
-- T012
-
-## Must Do
-
-- avatar/name/member-since
-- stat tiles
-- 30-day heatmap
-- badges grid
-- per-module accuracy bars
-
-## Done When
-
-- progress screen reflects persisted and preset states accurately
+- No progress/profile screen should be implemented under the current packet revision.
+- If the product needs this surface later, it requires an explicit packet revision.

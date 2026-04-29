@@ -4,75 +4,43 @@ This document records contradictions, inferred defaults, and open questions from
 
 ## 1. Resolved For Execution
 
-### A1. Demo preset count contradiction
-
-PRD conflict:
-- §7.2 defines 5 preset states
-- §9 says "All four demo preset states reachable in under 2 seconds"
-
-Execution decision:
-- Implement 5 presets.
-- Treat the §9 count of 4 as a stale reference.
-
-Reason:
-- §7.2 is explicit and enumerated.
-
-### A2. Daily challenge interaction with module progress
+### A1. Active demo path reduction
 
 PRD ambiguity:
-- Daily questions are selected from the authored question bank.
-- It is not explicit whether answering a daily question also advances module progress.
+- The PRD describes a broader app experience than the current delivery budget allows.
 
 Execution decision:
-- Daily challenge completion DOES NOT affect module progression or module question completion.
-- It DOES affect XP, streak, badge counters tied to total answered volume, and daily history.
+- The active demo path is reduced to `first-run personalization -> home -> question -> completion`.
+- Other surfaces may exist in code, but they are not part of the delivery contract for this packet revision.
 
 Reason:
-- Daily is a distinct surface and reward loop. Sharing completion with modules would create confusing cross-surface side effects in demos.
+- This is the highest-leverage scope cut for engineering time.
 
-### A3. Onboarding checkpoint granularity
+### A2. Module detail removal
 
 PRD ambiguity:
-- "Checkpointed per step" is specified, but step boundaries are not fully enumerated.
+- The PRD expects a module detail screen before question entry.
 
 Execution decision:
-- Checkpoints occur after:
-  - welcome CTA
-  - goal selection
-  - sample puzzle completion
-  - each diagnostic question submission
-  - profile setup completion
+- The reduced demo skips a separate module-detail screen.
+- Home routes directly into the playable Foundations question flow.
 
 Reason:
-- This is fine-grained enough to survive interruptions without replaying meaningful work.
+- Module detail adds routing, composition, and state surface area without improving the core demo as much as polishing home and completion.
 
-### A4. Baseline level thresholds
+### A3. Onboarding reduction
 
 PRD ambiguity:
-- Baseline quiz yields level 1-3, but thresholds are unspecified.
+- The PRD and older execution docs included sample questions, diagnostic logic, profile setup, and recommendations.
 
 Execution decision:
-- Diagnostic score thresholds:
-  - `0-2 correct -> level 1`
-  - `3-4 correct -> level 2`
-  - `5 correct -> level 3`
+- Onboarding is reduced to first-run personalization only.
+- The flow collects display name and one goal, persists across reload, and routes to home.
 
 Reason:
-- Simple, demo-friendly, and stable.
+- This keeps personalization while removing the most expensive low-value path.
 
-### A5. Recommended starting module behavior
-
-PRD ambiguity:
-- Baseline level affects recommended starting module, but not the exact mapping.
-
-Execution decision:
-- Foundations is always the recommended starting module in the simplified demo build.
-- Baseline level is still computed and stored, but it does not change the starting-module recommendation.
-
-Reason:
-- Foundations is the only playable module, so the recommendation must stay actionable.
-
-### A6. Preview-only module behavior
+### A4. Preview-only module behavior
 
 PRD ambiguity:
 - The PRD describes sequential unlocks across four modules, but the simplified demo keeps only one module playable.
@@ -85,63 +53,104 @@ Execution decision:
 Reason:
 - This preserves product breadth visually while removing cross-module progression work from the demo build.
 
-### A7. Streak freeze earning rule
+### A5. Daily challenge removal from live path
 
 PRD ambiguity:
-- Freeze usage is defined; earning criteria are not.
+- Daily challenge exists in the broader product vision.
 
 Execution decision:
-- Award one streak-freeze badge at the first 7-day streak milestone.
-- User can hold at most one unused freeze at a time.
-- Freeze is consumed automatically on the first missed eligible day.
+- The reduced demo has no standalone daily screen and no daily-specific acceptance gates.
+- Existing daily-related backend code MAY remain, but frontend work MUST NOT depend on it.
 
 Reason:
-- Supports the PRD behavior without adding a separate progression system.
+- Daily is breadth, not the shortest path to a strong demo.
 
-### A8. Reduced motion and sound precedence
+### A6. Progress/profile removal from live path
 
 PRD ambiguity:
-- Reduced motion disables sound; there is also a manual sound toggle and skip-animations mode.
+- The PRD includes a deeper progress screen.
 
 Execution decision:
-- Effective sound enabled = `soundEnabled && !reducedMotion && !skipAnimations`.
-- Effective motion enabled = `!reducedMotion && !skipAnimations`.
+- The reduced demo removes progress/profile from the active delivery path.
+- Any later progress surface would be an explicit packet revision, not incidental scope creep.
 
 Reason:
-- Keeps system preference and demo mode higher priority than user toggle.
+- The screen is expensive and non-essential for the core learning-loop demo.
 
-### A9. Member-since date
-
-PRD ambiguity:
-- Member-since date is "faked: derived from baseline-quiz-date" without exact rule.
-
-Execution decision:
-- Member-since equals the local date on which diagnostic/profile completion occurs.
-
-### A10. Recent activity strip generation
+### A7. Badges and advanced progression breadth
 
 PRD ambiguity:
-- Event taxonomy for milestones is unspecified.
+- The PRD includes richer streak, badge, and reward systems than the current demo needs.
 
 Execution decision:
-- Populate from a derived event log composed of:
-  - question answered
-  - module completed
-  - badge earned
-  - daily challenge completed
-- Show the most recent 3 human-readable events.
+- Advanced badge and progression breadth are no longer release gates.
+- The reduced packet may use fixed or preset-backed visible reward states instead of fully computed badge flows.
 
-### A11. Meaning of "backend" in this prototype plan
+Reason:
+- This preserves perceived reward without forcing a larger backend surface.
+
+### A8. Motion and sound de-prioritization
 
 PRD ambiguity:
-- The product has no real backend, but the execution plan now splits frontend and backend ownership.
+- The original packet dedicated separate waves to motion polish and sound.
 
 Execution decision:
-- "Backend" means the in-repo data, persistence, domain logic, selectors, schemas, and preset-state layer.
-- "Frontend" means the visible app shell, screens, components, animation, sound integration, and SVG presentation layer.
+- Motion may be added opportunistically within active feature work.
+- Dedicated motion and sound tasks are de-scoped from the critical path.
+
+Reason:
+- Separate polish waves are not justified until the core loop is complete and wired.
+
+### A9. Typed content pack instead of schema-heavy authoring
+
+PRD ambiguity:
+- Earlier docs expected JSON files plus schema-validation helpers.
+
+Execution decision:
+- T012 should use typed TypeScript content exports when that is faster and safer for this repo.
+- Canonical content still needs stable shapes, but not a generalized authoring system.
+
+Reason:
+- The project only needs a small, static content pack for the demo.
+
+### A10. Preset-driven demo progression
+
+PRD ambiguity:
+- The PRD emphasizes live progression, but the simplified demo target prioritizes polish and fast state changes.
+
+Execution decision:
+- Completion-ready and power-user moments SHOULD primarily be reached through presets.
+- Presets should be plain store snapshots or shallow patches with a target screen identifier.
+
+Reason:
+- Presets preserve demo impressiveness while avoiding unnecessary live setup work.
+
+### A11. Preset count
+
+PRD ambiguity:
+- Older docs referenced both four and five presets.
+
+Execution decision:
+- The reduced packet targets four presets:
+  - Fresh user
+  - Mid-Foundations
+  - Completion ready
+  - Power user
+
+Reason:
+- Four presets cover the required demo moments without extra state-authoring cost.
+
+### A12. Meaning of "backend" in this prototype plan
+
+PRD ambiguity:
+- The product has no real backend, but the execution plan splits frontend and backend ownership.
+
+Execution decision:
+- "Backend" means the in-repo data, persistence, domain logic, selectors, typed content exports, and preset-state layer.
+- "Frontend" means the visible app shell, screens, components, and active demo-path behavior.
 - This ownership split MUST NOT add any external service or alter product behavior.
 
-### A12. Visual-question scope reduction
+### A13. Visual-question scope reduction
 
 PRD ambiguity:
 - The PRD includes visual question types, but the simplified demo scope prioritizes minimum engineering time.
@@ -153,55 +162,37 @@ Execution decision:
 Reason:
 - The current shared question shell already supports the text path and this preserves the strongest demo loop for the least engineering cost.
 
-### A13. Preset-driven demo progression
-
-PRD ambiguity:
-- The PRD emphasizes live progression, but the simplified demo target prioritizes polish and fast state changes.
-
-Execution decision:
-- Completion-ready, high-progress, and power-user moments SHOULD primarily be reached through presets.
-- Live play still needs to support the core Foundations loop end to end.
-
-Reason:
-- Presets preserve demo impressiveness while avoiding unnecessary dependency on fully earned state transitions during rehearsal and live demos.
-
 ## 2. Still Open But Non-Blocking
 
 These can be implemented with placeholders or conservative defaults if product signoff is pending.
 
-### O1. Exact badge artwork spec
+### O1. Final question-bank copy
 
 Need:
-- final visual system for each badge family
+- finalized wording for the five Foundations questions and concept primer copy
 
 Safe default:
-- geometric solar/neural line art with locked/earned state variants
+- ship the current authored development-quality set if it is internally coherent and polished enough for demo use
 
-### O2. Final question bank content
+### O2. Completion celebration copy
 
 Need:
-- authored and validated 5-question playable-module dataset plus preview-card metadata for the other three modules
+- final completion headline and optional reward language
 
 Safe default:
-- scaffold schema and integrate sample content for development
-
-### O3. Sound asset production
-
-Need:
-- final MP3/OGG assets under bundle budget
-
-Safe default:
-- wire the system with placeholder silent or temporary assets
+- fixed copy that celebrates completion and routes back home cleanly
 
 ## 3. Blocking If Changed Later
 
 Changing these after implementation will cause rework:
-- baseline level thresholds
-- module recommendation mapping
-- streak freeze earning/consumption rule
+- active demo path reduction
+- module-detail removal
+- onboarding reduction
 - preview-only module behavior
-- visual-question removal
+- typed content pack approach
 - preset-driven demo progression
+- four-preset target
+- visual-question removal
 
 ## 4. Decision Request Template
 

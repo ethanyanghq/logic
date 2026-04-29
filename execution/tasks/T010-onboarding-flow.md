@@ -1,8 +1,8 @@
-# T010 Onboarding Flow
+# T010 First-Run Personalization
 
 ## Objective
 
-Implement onboarding end-to-end with checkpointing and first-home reveal.
+Implement a lightweight first-run personalization flow that persists across reload and routes directly to home.
 
 ## Assigned Agent
 
@@ -15,24 +15,24 @@ Files:
 
 ## Dependencies
 
-- T006
+- T004
 - T008
-- T009
-- T012
 
 ## Must Do
 
 - welcome and goal selection
-- sample puzzle
-- 5-question diagnostic
-- profile setup
-- Foundations recommendation highlight on home reveal
+- display-name entry
+- persist in-progress state across reload
+- route directly to home on completion
 
 ## Done When
 
-- onboarding resumes correctly after reload
-- onboarding awards XP but not module progress
+- fresh users complete personalization quickly without a long flow
+- personalization resumes correctly after reload
+- completion lands directly on home
+- no sample-question, diagnostic, avatar, or recommendation work remains in scope
 
 ## Verification
 
-- exit/reload after each checkpoint boundary
+- exit/reload before completion
+- verify returning users bypass the flow once complete

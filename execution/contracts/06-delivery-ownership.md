@@ -1,6 +1,6 @@
 # Delivery Ownership
 
-This document defines the execution split between Codex and Claude Code for the simplified demo contract captured in `/execution`.
+This document defines the execution split between Codex and Claude Code for the reduced core-loop contract captured in `/execution`.
 
 ## 1. Core Rule
 
@@ -13,11 +13,11 @@ This document defines the execution split between Codex and Claude Code for the 
 For this prototype, backend work means the non-visual application layer inside the same repo:
 - persisted store design and mutations
 - pure business logic
-- XP, streak, badge, daily, and onboarding recommendation rules
-- static data schemas and normalized content files
+- lightweight progression helpers used by the active demo path
+- typed content exports and preset-state definitions
 - preset-state definitions and loaders
 - selectors and typed contracts used by the UI
-- validation and integrity checks for authored data
+- validation and integrity checks for authored data when worth the effort
 
 Backend work does NOT mean:
 - adding a real server
@@ -29,11 +29,10 @@ Backend work does NOT mean:
 
 Frontend work means the visible and interaction-facing layer:
 - app shell and phone frame
-- screen composition
+- screen composition for the active demo path
 - UI primitives
 - question presentation
-- motion behavior
-- sound integration
+- first-run personalization, home, and completion surfaces
 - toasts, sheets, modals, and completion surfaces
 - styling, layout, spacing, and token application
 
@@ -46,7 +45,6 @@ Frontend work MUST consume backend contracts rather than recreating them locally
 - `src/store/*`
 - `src/lib/*`
 - `src/data/*`
-- schema-validation helpers
 - backend-facing shared types where applicable
 
 ### Claude Code
@@ -55,7 +53,6 @@ Frontend work MUST consume backend contracts rather than recreating them locally
 - `src/components/*`
 - `src/styles/*`
 - most `src/hooks/*`
-- `src/assets/sounds/*`
 
 ### Shared But Contract-Driven
 
@@ -65,6 +62,7 @@ Frontend work MUST consume backend contracts rather than recreating them locally
 
 Rule:
 - if a shared file must change, backend contracts land first and frontend integration follows
+- `App.tsx` is the highest-priority shared integration point in this packet revision
 
 ## 5. Handoff Requirements
 
@@ -72,7 +70,7 @@ Codex handoff to Claude Code SHOULD include:
 - final type shapes
 - selector names and expected outputs
 - store actions and side-effect rules
-- normalized sample data or preset payloads
+- content exports or preset payloads
 - edge cases that the UI must respect
 - a task-by-task update in `execution/handoffs/codex-to-claude.md`
 
@@ -87,11 +85,12 @@ Claude Code handoff back to Codex SHOULD include:
 - A frontend task may depend on a backend task, but it MUST NOT absorb that backend scope.
 - A backend task may define UI-facing contracts, but it MUST NOT implement final screen/UI behavior.
 - QA findings SHOULD be routed back to the owning side rather than fixed opportunistically in the wrong layer.
+- De-scoped tasks MUST remain de-scoped unless the packet is revised again.
 
 ## 7. Review Rules
 
 - Backend review checks determinism, schema stability, selector correctness, and state consistency.
-- Frontend review checks layout, token compliance, interaction fidelity, motion/sound behavior, and demo polish.
+- Frontend review checks layout, token compliance, interaction fidelity, and demo polish on the active screens.
 - Cross-review checks only whether the integration preserves the product contract.
 
 ## 8. Non-Negotiable Constraint

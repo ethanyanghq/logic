@@ -1,8 +1,8 @@
-# T008 Home Dashboard
+# T008 Home Launchpad
 
 ## Objective
 
-Build the home screen with high-value demo surfaces and real store-driven data.
+Build the home screen as the launchpad for the playable Foundations loop using real content and store-driven data.
 
 ## Assigned Agent
 
@@ -22,19 +22,18 @@ Files:
 ## Must Do
 
 - greeting/date
-- streak
-- XP and level
-- daily challenge card
-- continue-learning hero
+- primary Foundations start/continue CTA above the fold
+- enough progress context to feel personalized, such as XP and/or level
 - Foundations card plus three preview-only module cards
-- recent activity
-- weekly heatmap
+- direct route into the playable question flow
 
 ## Done When
 
 - first-time completed user lands on a personalized home screen
-- hero surfaces reflect store state accurately
+- home reflects canonical content and persisted state accurately
+- Foundations launches directly into the shared question flow
+- preview-only modules are visible but non-interactive
 
 ## Verification
 
-- verify with fresh, mid-progress, and fully populated states using seeded store data or later presets
+- verify with fresh, mid-progress, and power-user states using seeded store data or later presets

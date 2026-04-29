@@ -1,6 +1,6 @@
 # Technical Architecture
 
-This document defines the target architecture and implementation boundaries.
+This document defines the target architecture and implementation boundaries for the reduced core-loop packet.
 
 ## 1. Core Stack
 
@@ -8,17 +8,14 @@ This document defines the target architecture and implementation boundaries.
 - React 18
 - TypeScript with strict mode
 - Tailwind CSS
-- Framer Motion
-- Howler.js
-- Lucide React
 - Zustand with persist middleware
 - React Router memory router
 
-No additional core runtime libraries should be introduced unless approved.
+No additional core runtime libraries should be introduced unless approved. Motion and sound libraries are not required by this packet revision.
 
 ## 2. Directory Contract
 
-Target structure:
+Target structure for the active demo path:
 
 ```text
 src/
@@ -30,19 +27,16 @@ src/
   screens/
     onboarding/
     home/
-    module/
     question/
-    progress/
-    daily/
+    completion/
   store/
   data/
-    questions/
   lib/
   hooks/
-  assets/
-    sounds/
   styles/
 ```
+
+Future or unused directories such as `screens/module`, `screens/daily`, `screens/progress`, and `assets/sounds` MAY exist, but they are not required for this packet to be considered complete.
 
 Rules:
 - `components/ui` owns reusable primitives only.
@@ -61,7 +55,6 @@ Codex owns:
 - `src/store/*`
 - `src/lib/*`
 - `src/data/*`
-- schema validation and data normalization helpers
 - preset-state definitions and loaders
 - selector and state-contract definitions consumed by UI
 
@@ -77,20 +70,20 @@ Claude Code owns:
 - `src/components/*`
 - `src/hooks/*` except hooks that are pure backend adapters
 - `src/styles/*`
-- motion, sound wiring, SVG presentation, and visible interaction behavior
+- visible interaction behavior in the active demo path
 
 Frontend rules:
 - frontend code MUST consume business rules from backend contracts rather than reimplement them
-- frontend code MUST NOT mutate canonical data schemas ad hoc
+- frontend code MUST NOT mutate canonical data contracts ad hoc
 - frontend code MAY add presentation-only adapters when they do not redefine backend logic
 
 ### Handoff Boundary
 
 Frontend/backend handoff SHOULD happen through:
-- TypeScript types and schema definitions
+- TypeScript types
 - store actions and selectors
 - pure helper APIs
-- preset metadata and normalized state payloads
+- content exports and preset payloads
 - the running backend handoff doc at `execution/handoffs/codex-to-claude.md`
 
 If a change requires edits on both sides:
@@ -102,31 +95,40 @@ If a change requires edits on both sides:
 
 - Routing MUST use a memory router.
 - Root routing MUST support:
-  - first-launch detection
-  - onboarding flow
-  - tab surfaces
-  - modal-style question presentation
+  - first-run personalization
+  - home
+  - question presentation
+  - completion
 - URL semantics are internal-only and MUST NOT be treated as user-facing navigation.
 
 ## 5. Store Contract
 
 The store SHOULD be split into coherent slices or modules, but MUST present one persisted app state.
 
-Suggested domains:
-- profile/onboarding
-- progress/XP/streak
+Suggested active domains:
+- profile/first-run completion
+- progress/XP
 - modules/questions
-- badges
-- daily challenge
 - preferences/demo controls
 
 Rules:
 - persistence versioning MUST be supported
 - reset MUST clear the persisted namespace safely
 - preset application MUST be deterministic and idempotent
-- the preferences/demo-controls domain SHOULD own sound, reduced-motion, skip-animations, and grid-overlay state rather than ad hoc component-local toggles
+- the preferences/demo-controls domain SHOULD own reduced-motion, skip-animations, and grid-overlay state rather than ad hoc component-local toggles
 
 ## 6. Data Contracts
+
+### Content Pack Contract
+
+Canonical content SHOULD be authored in typed TypeScript exports rather than JSON plus schema tooling.
+
+The active content pack MUST include:
+- four module records
+- exactly one playable module
+- exactly five authored Foundations questions
+- concept-primer copy for Foundations
+- preview metadata for the other three modules
 
 ### Module Schema
 
@@ -134,8 +136,6 @@ Each module record MUST include:
 - `id`
 - `title`
 - `subtitle`
-- `iconName`
-- `accentShape`
 - `difficulty`
 - `conceptPrimer`
 - `isPlayable`
@@ -158,42 +158,30 @@ Each question record MUST include:
 - `correctIndex`
 - `explanation`
 - `tags`
-- `dailyEligible`
 
 Question-type rule:
-- only text multiple-choice questions are in scope for the simplified demo build
-
-### Badge Schema
-
-Each badge record SHOULD include:
-- `id`
-- `category`
-- `label`
-- `description`
-- `unlockRule`
-- `artworkSpec`
+- only text multiple-choice questions are in scope for the reduced demo build
 
 ### Demo Preset Contract
 
 Each preset MUST define:
-- target route/screen
+- target screen identifier
 - persisted store payload or patch
-- required derived values already normalized
-- optional explanatory label for demo menu
+- optional explanatory label for the demo menu
+
+Preset payloads SHOULD be plain snapshots or shallow patches, not a generalized preset framework.
 
 ## 7. Domain Logic Boundaries
 
 Pure library modules SHOULD be used for:
 - XP calculation
 - level derivation
-- streak math based on local calendar dates
-- daily challenge selection
-- badge evaluation
-- onboarding recommendation selection
+- any lightweight question progression helpers still needed by the store
 
 Rules:
 - these modules SHOULD be side-effect free
 - UI code MUST NOT reimplement the same business rule ad hoc
+- advanced daily, badge, and recommendation systems are not required by this packet revision
 
 ## 8. Demo/Reset Architecture
 
@@ -201,21 +189,18 @@ Rules:
 - Demo menu UI SHOULD live under `components/demo`.
 - Preset state definitions SHOULD live in `data/presets.ts`.
 - Reset and preset application MUST work without page reload.
-- Global skip-animations mode SHOULD feed both motion and sound suppression.
 - Presets SHOULD be treated as the primary route into completion-ready and power-user demo states.
 
 ## 9. Performance Contract
 
 - All static content SHOULD be imported at build time.
 - Screens MAY be code-split if needed.
-- Fonts and sound assets SHOULD be preloaded.
 - Skeletons SHOULD reserve final space to prevent layout shift.
 
 ## 10. Testing And Verification Expectations
 
 Even if formal tests are not fully built at first, the architecture SHOULD make room for:
-- schema validation for data files
-- pure-function tests for XP/streak/daily/badge logic
+- smoke verification of content exports
 - smoke verification of preset loading
 - strict type checks
 
@@ -225,4 +210,4 @@ Even if formal tests are not fully built at first, the architecture SHOULD make 
 - Shared contracts MUST be centralized before feature screens are built.
 - If a task requires touching multiple ownership zones, it SHOULD be split unless the integration point is inseparable.
 - Backend tasks SHOULD land state/data contracts before frontend screens depend on them.
-- Frontend tasks SHOULD treat backend selectors, schemas, and state actions as the source of truth.
+- Frontend tasks SHOULD treat backend selectors, content exports, and state actions as the source of truth.

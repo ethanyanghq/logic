@@ -2,34 +2,13 @@
 
 ## Objective
 
-Implement preload, priority, and event mappings for the app sound system.
+This task is de-scoped in the reduced core-loop packet.
 
 ## Assigned Agent
 
 Claude Code (Frontend)
 
-## Ownership
+## Status
 
-Files:
-- `src/lib/sound.ts`
-- `src/hooks/useSound.ts`
-- `src/assets/sounds/*`
-- related integration points
-
-## Dependencies
-
-- T004
-- T005
-- major interaction surfaces implemented
-
-## Must Do
-
-- preload sounds
-- priority drop logic
-- event mapping for required interactions
-- respect effective sound-enabled rules
-
-## Done When
-
-- first-use sound lag is absent
-- lower-priority sounds do not overlap higher-priority ones
+- The reduced packet does not require a dedicated sound system.
+- Do not add sound breadth work unless the packet is revised again.

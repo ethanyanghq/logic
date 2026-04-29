@@ -2,32 +2,14 @@
 
 ## Objective
 
-Implement progression rules, badge evaluation, derived streak/badge state, and UI-facing reward contracts.
+This task is de-scoped in the reduced core-loop packet.
 
 ## Assigned Agent
 
 Codex (Backend)
 
-## Ownership
+## Status
 
-Files:
-- `src/lib/*`
-- `src/store/*`
-
-## Dependencies
-
-- T004
-- T012
-
-## Must Do
-
-- XP award rules
-- level derivation
-- streak updates and reset/freeze behavior
-- milestone badge unlock evaluation
-- typed selector/state outputs for streak-risk, milestones, earned badges, reward summaries, and other derived activity read models consumed by home/progress surfaces
-
-## Done When
-
-- progression behavior is deterministic from activity history
-- frontend can consume stable reward and badge state without reimplementing logic
+- Existing T004 progression logic may remain and be reused where helpful.
+- Advanced streak, badge, and reward breadth are not part of the active delivery path.
+- Do not expand the backend surface here unless the packet is revised again.

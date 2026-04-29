@@ -1,33 +1,37 @@
 # Product Contract
 
-This document converts the PRD into implementation rules. Product behavior defined here is binding unless superseded by an approved decision in `05-ambiguities-and-decisions.md`.
+This document converts the PRD into implementation rules for the reduced demo packet. Product behavior defined here is binding unless superseded by an approved decision in `05-ambiguities-and-decisions.md`.
 
 ## 1. Product Intent
 
 - The prototype MUST feel like a shipping mobile app during a guided demo.
-- The prototype MUST prefer perceived polish over production-grade backend realism.
-- The prototype MUST support end-to-end interactive primary flows with persisted state.
+- The prototype MUST prefer perceived polish over backend completeness.
+- The prototype MUST support one end-to-end interactive primary flow with persisted state.
 - The prototype MUST be resettable or jumpable to preset states in under 2 seconds.
-- The prototype MUST NOT expose incomplete flows, dead controls, or visible "not implemented" moments during demo paths.
+- The prototype MUST NOT expose incomplete flows, dead controls, or visible "not implemented" moments in the active demo path.
 
 ## 2. Scope Boundaries
 
 ### In Scope
 
-- onboarding
-- home/dashboard
-- module detail
+- first-run personalization
+- home launchpad
 - question engine
 - module completion
-- progress/profile
-- daily challenge
-- XP, streaks, badges
 - demo presets and reset tools
 - curated static text content
-- accessibility hygiene for primary interaction paths
+- one playable module plus three preview-only cards
+- accessibility hygiene for the active demo path
 
 ### Out Of Scope
 
+- module detail screen
+- progress/profile screen
+- standalone daily challenge screen
+- full diagnostic onboarding
+- badge system as a required computed feature
+- dedicated sound-system implementation
+- dedicated motion-polish wave
 - authentication
 - real backend
 - push notifications
@@ -44,67 +48,53 @@ This document converts the PRD into implementation rules. Product behavior defin
 - The app MUST render inside a phone frame at desktop widths and edge-to-edge on mobile widths.
 - The app MUST use a memory router.
 - The app MUST persist all user state under one localStorage namespace key: `logic-app-v1`.
-- The app MUST route first launch users to onboarding and returning users to home.
+- The app MUST route first-launch users to first-run personalization and returning users to home.
 - The app MUST support reset without a full page reload.
 
 ## 4. State Contract
 
-The app store MUST contain:
-- user profile: display name, avatar selection, selected goal, baseline level
-- XP total, current streak, longest streak, last-active local date
-- module progress keyed by `moduleId`
+The app store MUST contain enough state to support:
+- user profile: display name and selected goal
+- XP total and derived level
+- lightweight module progress keyed by `moduleId`
 - question progress keyed by `questionId`
-- earned badge IDs
-- daily challenge state
-- user preferences for sound, reduced motion / skip animations mode, and grid overlay
-- onboarding checkpoint state
+- demo-control preferences for reduced motion / skip animations and grid overlay
+- first-run completion state
 
 The store MUST expose:
 - `resetApp()`
 - actions for answering questions
-- actions for awarding XP
-- actions for recomputing streaks
 - actions for applying demo presets
 - actions for updating demo-control preferences
-- actions for onboarding progression
+- actions for first-run personalization progression
+
+Existing richer store state MAY remain in the repo, but frontend work in this packet MUST NOT depend on de-scoped surfaces.
 
 ## 5. Screen Contracts
 
 ### Splash / First Launch Detection
 
-- MUST detect whether a user profile exists.
-- MUST route immediately to onboarding or home.
-- MUST NOT require user input.
+- MUST detect whether first-run personalization is complete.
+- MUST route immediately to first-run personalization or home.
+- MUST NOT require an intermediate splash interaction.
 
-### Onboarding
+### First-Run Personalization
 
-- MUST contain 3 narrative moments:
-  - Welcome and goal selection
-  - Sample puzzle
-  - Diagnostic and reveal
-- MUST checkpoint progress after each completed step.
-- MUST resume at the last completed step after reload.
-- MUST award XP for sample and diagnostic questions.
-- MUST NOT count onboarding question activity toward module progress or module question totals.
-- MUST collect display name and avatar before entering home.
-- MUST compute baseline level from diagnostic score.
-- MUST highlight the one playable module on first home reveal.
+- MUST collect display name and one goal selection.
+- MUST persist progress across reload.
+- MUST feel fast and lightweight rather than like a long onboarding flow.
+- MUST route directly to home when complete.
+- MUST NOT require sample questions, diagnostics, avatar selection, or recommendations.
 
-### Home / Dashboard
+### Home / Launchpad
 
-- MUST be the default post-onboarding screen.
-- MUST show greeting, current date, streak, XP, level, and daily challenge above the fold.
-- MUST show continue-learning module and all module cards.
-- MUST show recent activity and weekly heatmap below the fold.
+- MUST be the default post-personalization screen.
+- MUST show greeting and current date.
+- MUST make the playable Foundations entry the primary CTA above the fold.
+- MUST show enough progress context to feel personalized, such as XP and/or level.
+- MUST show all four module cards, with three clearly marked as preview-only.
 - MUST reflect real persisted state on reload.
-
-### Module Detail
-
-- MUST show title, subtitle, icon/shape, difficulty, progress, stats, and CTA.
-- MUST show concept primer before the first module question is answered.
-- MUST collapse primer after module start into a review affordance.
-- MUST only exist for the one playable module.
-- Preview-only modules MUST remain visible on home but MUST NOT enter locked progression or question flow.
+- Optional supporting surfaces such as streak, daily, recent activity, and heatmap MAY appear only if they strengthen the core loop and do not become blockers.
 
 ### Question Screen
 
@@ -113,23 +103,14 @@ The store MUST expose:
 - MUST disable submit until an option is selected.
 - MUST preserve answered state once submitted.
 - MUST show explanation after every submit.
-- MUST advance to next unanswered question or module completion.
+- MUST advance to the next unanswered question or module completion.
 
 ### Module Completion
 
 - MUST trigger immediately after the final module question result flow.
-- MUST show stats, reward totals, newly earned badges if any, and a back-home CTA.
 - MUST be a full-screen takeover, not a toast.
-
-### Progress / Profile
-
-- MUST show avatar, display name, member-since date, large stat tiles, 30-day heatmap, earned/locked badges, and per-module accuracy breakdown.
-
-### Daily Challenge
-
-- MUST show one deterministic question per local calendar date.
-- MUST reflect completion state on both home and daily surfaces.
-- MUST show a 7-day result strip.
+- MUST show a clear completion message and back-home CTA.
+- MAY use fixed celebration copy instead of fully computed reward summaries.
 
 ## 6. Question Lifecycle Contract
 
@@ -148,9 +129,7 @@ Rules:
 - Users MUST NOT change answers after submit.
 - Correct answers MUST award `+10 XP`.
 - Incorrect answers MUST award `+2 XP`.
-- Daily challenge correct MUST award `+50 XP`.
-- Daily challenge incorrect MUST award `+5 XP`.
-- Module completion MUST award `+25 XP`.
+- Module completion MAY award a fixed completion bonus if already supported by the store contract, but the UI MUST NOT depend on advanced reward plumbing.
 
 ## 7. Module System Contract
 
@@ -159,10 +138,11 @@ Rules:
   - Conditional Reasoning
   - Logical Fallacies
   - Visual Patterns
-- Foundations MUST be the only playable module in the simplified demo build.
+- Foundations MUST be the only playable module in the reduced demo build.
 - Foundations MUST contain exactly 5 authored questions.
 - The other three modules MUST remain visible as preview cards.
 - Preview cards MUST be clearly marked as non-playable and MUST NOT use locked progression behavior.
+- Home MUST route directly into Foundations question flow without a separate module-detail screen.
 
 ## 8. Question Bank Contract
 
@@ -170,30 +150,12 @@ Rules:
 - The authored playable-module question bank MUST contain exactly 5 questions total.
 - Every question MUST have exactly one defensible correct answer.
 - Every question MUST include a concise explanation.
-- Daily challenge eligibility MUST be an explicit boolean on the question record.
 
-## 9. XP, Streak, Badges, Daily Rules
-
-### XP
+## 9. XP And Progress Rules
 
 - Level MUST be derived as `floor(XP / 200) + 1`.
-- XP displays MUST update with count-up animation in the UI.
-
-### Streak
-
-- A streak day MUST equal any local calendar day with at least one answered question.
-- If more than one local calendar day passes without activity, streak MUST reset unless a freeze is available.
-- Streak milestones MUST exist for days `3, 7, 14, 30, 100`.
-
-### Badges
-
-- Badge earning MUST be deterministic from persisted activity.
-- Badge reveals MUST be toast-driven except when also shown on module completion.
-
-### Daily Challenge
-
-- Selection MUST be deterministic per local date from the eligible pool.
-- Same local date MUST always produce the same question.
+- XP displays SHOULD update smoothly in the UI when practical on implemented surfaces.
+- The reduced demo packet does not require full badge, daily, or streak breadth as release gates.
 
 ## 10. Demo Controls Contract
 
@@ -201,12 +163,11 @@ Rules:
 - The menu MUST include:
   - reset to first launch
   - preset states
-  - sound toggle
   - skip animations toggle
   - grid overlay toggle
   - app version
-- Preset loading MUST route the user to the most relevant screen for that state.
-- Reset MUST clear persisted state and route to onboarding/welcome immediately.
+- Preset loading MUST route the user to the most relevant active screen for that state.
+- Reset MUST clear persisted state and route to first-run personalization immediately.
 
 ## 11. Accessibility Contract
 
@@ -214,13 +175,13 @@ Rules:
 - Semantic HTML MUST be used for interactive controls.
 - Focus states MUST be visible.
 - Contrast MUST satisfy normal in-app readability expectations for the approved palette.
-- Reduced motion mode MUST disable nonessential motion and sound.
+- Reduced motion mode MUST disable nonessential motion in implemented surfaces.
 
 ## 12. Demo Readiness Gates
 
 The prototype is not demo-ready unless:
-- no console errors occur in primary flows
-- no visible layout shift occurs during core screens
+- no console errors occur in the core loop
+- no visible layout shift occurs during the active demo screens
 - initial load appears styled on first paint
-- sounds are ready before first interactive use
 - reset and preset flows work quickly and repeatably
+- the demo can proceed from first-run personalization to home to question to completion without workaround narration

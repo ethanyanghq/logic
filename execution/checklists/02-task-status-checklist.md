@@ -5,6 +5,7 @@ Use this checklist to track task-level completion across both agents.
 Rule:
 - Check a task only when its implementation, verification, and required handoff updates are complete.
 - Leave the box unchecked if the task is only partially implemented or still has blockers.
+- Treat each task file under `execution/tasks/*` as the source of truth for dependencies, "Done When", and verification requirements.
 
 ## Wave 1
 
@@ -24,31 +25,31 @@ Rule:
 
 ## Wave 4
 
-- [ ] T012 Content schema and bank integration
-- [ ] T008 Home dashboard
-- [ ] T009 Module detail
-- [ ] T010 Onboarding flow
+- [x] T012 Content schema and bank integration
+- [x] T008 Home dashboard
+- T009 Module detail (de-scoped by reduced core-loop contract)
 
 ## Wave 5
 
+- [ ] T010 First-run personalization
+- [ ] T015 Module completion
+- [x] T016 Demo presets
+
+Note:
+The active delivery path after Wave 3 is:
+- `T010` to route fresh users into a lightweight personalization flow and then home
+- `T015` to close the playable loop without dead-end behavior
+- `T016` to provide fast jumps into key demo states for rehearsal and live use
+
+## De-Scoped
+
 - T011 Remaining puzzle renderers (de-scoped by simplified demo contract)
+- T013 XP, streak, and badges expansion (de-scoped by reduced core-loop contract)
+- T014 Daily challenge (de-scoped by reduced core-loop contract)
+- T017 Progress/profile screen (de-scoped by reduced core-loop contract)
+- T018 Motion polish (de-scoped by reduced core-loop contract)
+- T019 Sound system (de-scoped by reduced core-loop contract)
 
 ## Wave 6
-
-- [ ] T013 XP, streak, and badges
-- [ ] T014 Daily challenge
-- [ ] T015 Module completion
-
-## Wave 7
-
-- [ ] T016 Demo presets
-- [ ] T017 Progress/profile screen
-
-## Wave 8
-
-- [ ] T018 Motion polish
-- [ ] T019 Sound system
-
-## Wave 9
 
 - [ ] T020 QA and demo hardening

@@ -20,19 +20,19 @@ This list prioritizes simplifications that retain demo impressiveness while mini
    - Code impact: no immediate change to existing code; mainly reduces future implementation depth.
    - Why: this allows onboarding-complete, mid-module, completion, and power-user states without fully implementing every rule path behind them.
 
-5. Treat the progress/profile screen as static demo composition.
+5. Treat the progress/profile screen as removed from the live demo path.
    - Code impact: no change to existing landed code.
-   - Why: heatmap, badges, activity, and per-module accuracy can be mocked or preset-backed later, avoiding derived analytics/read-model work.
+   - Why: heatmap, badges, activity, and per-module accuracy are expensive breadth work with low impact on the core learning loop.
 
-6. Drop daily challenge from the live demo path.
+6. Drop daily challenge as a standalone screen and loop.
    - Code impact: none to current landed code.
    - Why: daily selection, persistence, and the 7-day strip add complexity but are not necessary to demonstrate the core product loop.
 
-7. Keep onboarding, but reduce it to welcome, one sample question, and profile name.
+7. Keep onboarding, but reduce it to first-run personalization only.
    - Code impact: mostly future-scope reduction.
-   - Why: this retains personalization and polish while avoiding diagnostic branching and recommendation logic pressure.
+   - Why: this retains personalization and polish while avoiding sample-question and diagnostic branching pressure.
 
-8. Defer badge logic to purely visual badges shown in presets.
+8. Defer badge logic to purely visual or preset-backed states.
    - Code impact: no immediate change.
    - Why: badges still make the product feel rewarding, but deterministic unlock rule implementation is unnecessary for the demo.
 
@@ -49,8 +49,8 @@ This list prioritizes simplifications that retain demo impressiveness while mini
 If the goal is maximum simplification with effectively zero changes to existing code, prioritize:
 
 - cut visual questions entirely
-- drop daily challenge from the demo
-- make progress/profile preset-driven or static rather than fully derived
+- drop the standalone daily flow from the demo
+- remove progress/profile from the live demo path
 
 ## Adopted In Execution Packet
 
@@ -59,4 +59,7 @@ The current `/execution` packet now adopts these simplifications:
 - cut all visual-based questions entirely
 - keep only one playable module in the demo
 - present the other three modules as preview-only cards rather than locked progression
-- use presets as the primary route into advanced demo states
+- route directly from home into the playable question flow instead of using a separate module-detail screen
+- reduce onboarding to first-run personalization only
+- remove standalone daily, progress/profile, sound-system, and dedicated motion waves from the critical path
+- use plain snapshot presets as the primary route into advanced demo states

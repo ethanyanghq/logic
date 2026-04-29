@@ -2,29 +2,13 @@
 
 ## Objective
 
-Apply the motion system consistently across implemented screens and primitives.
+This task is de-scoped in the reduced core-loop packet.
 
 ## Assigned Agent
 
 Claude Code (Frontend)
 
-## Ownership
+## Status
 
-Files:
-- `src/lib/motion.ts`
-- relevant components and screens
-
-## Dependencies
-
-- waves through T017 materially complete
-
-## Must Do
-
-- centralize spring presets
-- add count-up and progress transitions
-- implement ambient motion rules without competition
-- respect reduced motion and skip-animations mode
-
-## Done When
-
-- visible motion matches the contract and degrades cleanly when disabled
+- Meaningful motion may still be added opportunistically inside active feature tasks.
+- Do not create a dedicated motion wave unless the packet is revised again.

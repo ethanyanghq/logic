@@ -26,8 +26,8 @@ Your scope is backend only. Do not implement final screen/UI behavior. Do not to
 Implement T004 exactly:
 - create the persisted Zustand store under logic-app-v1
 - support reset and preset application
-- encode XP, level, streak, daily-selection, and onboarding recommendation rules
-- include backend-owned demo-control preference state for sound, reduced motion, skip animations, and grid overlay
+- encode the lightweight progression and first-run state needed by the active demo path
+- include backend-owned demo-control preference state for reduced motion, skip animations, and grid overlay
 
 Own these areas:
 - src/store/*
@@ -44,7 +44,7 @@ Constraints:
 
 When finished:
 - run any relevant local verification available for this repo
-- manually exercise onboarding, question answer, reset, and preset state transitions if possible
+- manually exercise first-run personalization, question answer, reset, and preset state transitions if possible
 - check the `T004` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - update the `## T004` section of `execution/handoffs/codex-to-claude.md`
 - in that section, summarize what changed, what you verified, and any schema/contracts/selectors/actions frontend must consume
@@ -69,27 +69,25 @@ Dependency T004 must already be landed.
 Your scope is backend only. Define canonical content schemas and normalized authored data. Do not implement final screen presentation for this content.
 
 Implement T012 exactly:
-- integrate modules, questions, badges, and preset data into the app data layer
-- encode data files to the agreed schema
+- integrate a typed content pack and preset data into the app data layer
+- encode data as stable typed exports instead of a generalized schema-heavy authoring system
 - author exactly 5 text multiple-choice questions for the playable module
 - wire module/question relationships
 - include canonical module concept-primer copy in module records
 - mark exactly one module as playable and represent the other three as preview-only module cards
-- flag curated daily-eligible questions
 
 Own these files:
-- src/data/modules.json
-- src/data/questions/*
-- src/data/badges.json
+- src/data/content.ts
 - src/data/presets.ts
-- any schema-validation helpers
+- small supporting types/helpers if needed
 
 Constraints:
 - preserve the exact product/module structure from the contracts
-- authored data should be normalized enough for frontend consumption without ad hoc reshaping
+- authored data should be direct enough for frontend consumption without ad hoc reshaping
+- do not spend time building badge schemas or a generalized validation framework unless clearly necessary
 
 When finished:
-- run any relevant validation available for schemas/data
+- run any relevant validation available for the content exports/data
 - check the `T012` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - update the `## T012` section of `execution/handoffs/codex-to-claude.md`
 - in that section, summarize what changed, what you verified, and any schema contracts frontend must consume
@@ -109,31 +107,8 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T013-xp-streak-and-badges.md
 
-Dependencies T004 and T012 must already be landed.
-
-Your scope is backend only. Do not implement final toast/reveal UI behavior. Instead, expose stable UI-facing reward and badge contracts that frontend can consume.
-
-Implement T013 exactly:
-- implement XP award rules
-- implement level derivation
-- implement streak updates and reset/freeze behavior
-- implement milestone badge unlock evaluation
-- expose typed selector/state outputs for streak-risk, milestones, earned badges, reward summaries, and other derived activity read models consumed by home/progress surfaces
-
-Own these areas:
-- src/lib/*
-- src/store/*
-
-Constraints:
-- progression behavior must be deterministic from activity history
-- use the explicit ambiguity resolutions already recorded in the execution docs
-- do not push rule duplication into the frontend
-
-When finished:
-- run any relevant pure-function or state verification available for this repo
-- check the `T013` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
-- update the `## T013` section of `execution/handoffs/codex-to-claude.md`
-- in that section, summarize what changed, what you verified, and the exact selectors/actions/state that frontend should use
+This task is de-scoped in the reduced core-loop packet.
+Do not expand badge, streak, or reward breadth unless the execution packet is revised again.
 ```
 
 ## T016
@@ -150,13 +125,13 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T016-demo-presets.md
 
-Dependencies T004, T012, and T013 must already be landed.
+Dependencies T004 and T012 must already be landed.
 
-Your scope is backend only. Define preset states, normalized payloads, and preset loaders consumed by the demo UI. Do not implement the final demo menu UI here.
+Your scope is backend only. Define plain snapshot preset states and preset loaders consumed by the demo UI. Do not implement the final demo menu UI here.
 
 Implement T016 exactly:
-- implement the five preset states
-- provide normalized payloads and preset loaders
+- implement the four preset states
+- provide plain snapshots or shallow patches plus preset loaders
 - ensure preset application is deterministic and coherent with current schemas/store contracts
 - treat presets as the primary route into completion-ready and power-user demo moments
 
@@ -167,14 +142,13 @@ Own these files:
 Required presets:
 - Fresh user
 - Mid-Foundations
-- Streak day 6
-- Module completion ready
+- Completion ready
 - Power user
 
 Constraints:
 - every preset should load in under 1 second in normal local conditions
 - preset payloads should already include the state shape frontend needs to route correctly
-- target route identifiers must match the shared routing contract, even if some destination screens land later in the overall wave plan
+- target route identifiers must match the active shared routing contract
 - do not move routing or visible presentation logic into backend code
 
 When finished:

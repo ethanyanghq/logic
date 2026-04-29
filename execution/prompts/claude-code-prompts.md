@@ -158,7 +158,7 @@ Implement T005 exactly:
 - build the Demo Controls bottom sheet
 - support opening from Cmd/Ctrl + Shift + R
 - support opening from the home-screen gear icon
-- include reset, sound, skip animations, grid overlay, and version surfaces
+- include reset, skip animations, grid overlay, and version surfaces
 
 Edit only:
 - src/components/demo/*
@@ -250,9 +250,9 @@ Dependencies T003, T004, and T012 must already be landed.
 Your scope is frontend only. Consume store-driven data from backend selectors/actions.
 
 Implement T008 exactly:
-- build the home/dashboard screen
-- include greeting/date, streak, XP and level, daily challenge card, continue-learning hero, the playable Foundations card, three preview-only module cards, recent activity, and weekly heatmap
-- ensure the hero surfaces reflect real store state
+- build the home launchpad screen
+- include greeting/date, a primary Foundations start/continue CTA, enough progress context to feel personalized, the playable Foundations card, and three preview-only module cards
+- ensure the screen reflects real store state and routes directly into question flow
 
 Edit only:
 - src/screens/home/*
@@ -260,8 +260,8 @@ Edit only:
 
 Constraints:
 - above-the-fold priorities must match the design contract
-- do not reimplement XP, streak, or module logic in UI code
-- support verification with fresh, mid-progress, and fully populated states using seeded store data or later presets
+- do not reimplement XP or module logic in UI code
+- support verification with fresh, mid-progress, and power-user states using seeded store data or later presets
 
 When finished:
 - verify the screen with seeded data or the available presets
@@ -282,27 +282,8 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T009-module-detail.md
 
-Dependencies T003, T004, and T012 must already be landed.
-
-Your scope is frontend only. Consume playable-module metadata and progress state from backend-owned contracts.
-
-Implement T009 exactly:
-- build the module detail screen
-- include hero header, progress/stat surfaces, concept primer from canonical module data, and start/continue CTA
-- ensure only the playable module resolves into module detail and question flow
-
-Edit only:
-- src/screens/module/*
-
-Constraints:
-- do not invent locked progression behavior in the screen layer
-- the playable module must route into questions
-- preview-only modules must not resolve into module detail or question flow
-
-When finished:
-- verify playable-module routing behavior
-- check the `T009` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
-- summarize what changed, what you verified, and any blockers
+This task is de-scoped in the reduced core-loop packet.
+Do not implement a separate module-detail screen unless the execution packet is revised again.
 ```
 
 ## T010
@@ -319,28 +300,27 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T010-onboarding-flow.md
 
-Dependencies T006, T008, T009, and T012 must already be landed.
+Dependencies T004 and T008 must already be landed.
 
-Your scope is frontend only. Consume checkpointing, XP, and recommendation logic from backend state/actions. Do not recreate these rules in UI code.
+Your scope is frontend only. Consume first-run completion and profile state from backend actions/selectors. Do not recreate persistence rules in UI code.
 
 Implement T010 exactly:
-- build welcome and goal selection
-- build the sample puzzle step
-- build the 5-question diagnostic
-- build profile setup
-- build the Foundations recommendation highlight on first-home reveal
+- build a lightweight first-run personalization flow
+- collect display name and goal selection
+- persist in-progress state across reload
+- route directly to home on completion
 
 Edit only:
 - src/screens/onboarding/*
 - minimal frontend composition helpers if required
 
 Constraints:
-- onboarding must resume correctly after reload using backend checkpoint state
-- onboarding awards XP but not module progress
+- personalization must resume correctly after reload using backend state
 - pacing should feel fast and polished, not like a long form
+- do not add sample-question, diagnostic, avatar, or recommendation work
 
 When finished:
-- verify reload behavior at each checkpoint boundary if possible
+- verify reload behavior before completion if possible
 - check the `T010` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
 - summarize what changed, what you verified, and any blockers
 ```
@@ -375,28 +355,8 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T014-daily-challenge.md
 
-Dependencies T004, T006, and T012 must already be landed.
-
-Your scope is frontend only. Consume deterministic daily-selection outputs from backend helpers/store selectors. Do not redefine daily-pool selection or persistence rules in the screen layer.
-
-Implement T014 exactly:
-- build the daily tab screen
-- render completion state on both home and daily surfaces
-- render the 7-day result strip
-- integrate the daily challenge into the existing question experience
-
-Edit only:
-- src/screens/daily/*
-- minimal frontend integration points needed to surface backend daily state
-
-Constraints:
-- same local date must produce the same challenge across reloads through backend state
-- daily completion must not mutate module progress
-
-When finished:
-- verify daily behavior across reloads if possible
-- check the `T014` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
-- summarize what changed, what you verified, and any blockers
+This task is de-scoped in the reduced core-loop packet.
+Do not implement a standalone daily screen unless the execution packet is revised again.
 ```
 
 ## T015
@@ -412,20 +372,22 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T015-module-completion.md
 
-Dependencies T009 and T013 must already be landed.
+Dependencies T006, T008, and T012 must already be landed.
 
-Your scope is frontend only. Consume reward summaries, badge state, and completion metadata from backend contracts.
+Your scope is frontend only. Consume completion metadata from backend/store contracts without requiring advanced reward derivation.
 
 Implement T015 exactly:
-- build the full-screen module completion experience
-- include completion takeover, stat reveal sequence, badge reveal area, and a back-home CTA
+- build the full-screen completion experience
+- include completion takeover, clear completion messaging, and a back-home CTA
+- use fixed or lightweight status copy if needed rather than advanced reward choreography
 
 Edit only:
-- src/screens/module/*
+- src/screens/completion/*
 - src/components/feedback/*
+- minimal integration points required to transition from question flow into completion
 
 Constraints:
-- preserve the restrained completion/corona visual language
+- preserve the restrained completion visual language
 - no dead-end behavior after the final question
 - do not derive badge or reward logic in UI code
 
@@ -448,25 +410,8 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T017-progress-profile-screen.md
 
-Dependencies T008, T012, and T013 must already be landed.
-
-Your scope is frontend only. Consume persisted and preset-driven progress state from backend selectors/contracts.
-
-Implement T017 exactly:
-- build the progress/profile screen
-- include avatar/name/member-since, stat tiles, 30-day heatmap, badges grid, and per-module accuracy bars
-
-Edit only:
-- src/screens/progress/*
-
-Constraints:
-- data visualizations should follow the neural-vs-solar semantic rules
-- do not rederive accuracy, badge, or member-since logic in UI code
-
-When finished:
-- verify the screen against available persisted and preset states
-- check the `T017` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
-- summarize what changed, what you verified, and any blockers
+This task is de-scoped in the reduced core-loop packet.
+Do not implement a progress/profile screen unless the execution packet is revised again.
 ```
 
 ## T018
@@ -481,28 +426,8 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T018-motion-polish.md
 
-All major frontend surfaces through T017 should already be materially complete.
-
-Your scope is frontend only.
-
-Implement T018 exactly:
-- centralize spring presets
-- apply count-up and progress transitions
-- implement ambient motion rules without competition
-- respect reduced motion and skip-animations mode
-
-Edit only:
-- src/lib/motion.ts
-- relevant frontend components and screens
-
-Constraints:
-- do not alter product flow or business logic
-- motion should reinforce, not compete with, primary actions
-
-When finished:
-- verify motion behavior and degraded behavior when disabled
-- check the `T018` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
-- summarize what changed, what you verified, and any blockers
+This task is de-scoped in the reduced core-loop packet.
+If you add small motion touches inside active tasks, do so there rather than reviving a dedicated motion pass.
 ```
 
 ## T019
@@ -518,31 +443,8 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T019-sound-system.md
 
-Dependencies T004 and T005 must already be landed, and the major interaction surfaces should already exist.
-
-Your scope is frontend only.
-
-Implement T019 exactly:
-- preload sounds
-- implement priority drop logic
-- wire sound events for the required interactions
-- respect the effective sound-enabled rules from the contracts
-
-Edit only:
-- src/lib/sound.ts
-- src/hooks/useSound.ts
-- src/assets/sounds/*
-- related frontend integration points
-
-Constraints:
-- do not queue lower-priority sounds behind higher-priority ones
-- reduced motion and skip-animations mode must suppress sound
-- no product-scope expansion beyond the approved sound system
-
-When finished:
-- verify first-use sound lag is absent if possible
-- check the `T019` box in `execution/checklists/02-task-status-checklist.md` only if the task is fully complete
-- summarize what changed, what you verified, and any blockers
+This task is de-scoped in the reduced core-loop packet.
+Do not implement a dedicated sound system unless the execution packet is revised again.
 ```
 
 ## T020
@@ -559,21 +461,21 @@ Read these files first:
 - execution/contracts/06-delivery-ownership.md
 - execution/tasks/T020-qa-and-demo-hardening.md
 
-All major feature tasks should already be complete.
+All active feature tasks should already be complete.
 
 Your scope is frontend only. Route backend defects back to the owning backend task rather than patching business logic in UI code.
 
 Implement T020 exactly:
-- eliminate frontend-originated console errors in primary flows
+- eliminate frontend-originated console errors in the active demo path
 - audit layout stability
-- verify first paint and preload behavior
+- verify first paint behavior
 - rehearse reset and all presets
-- polish the most likely demo screens
+- polish the active demo screens
 
 Edit only frontend-facing files as needed, plus the QA checklist if findings require updates.
 
 Constraints:
-- focus on demo safety, visible polish, and interaction stability
+- focus on demo safety, visible polish, and interaction stability in the active path
 - do not silently fix backend logic in the UI layer
 
 When finished:

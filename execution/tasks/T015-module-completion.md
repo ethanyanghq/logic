@@ -2,7 +2,7 @@
 
 ## Objective
 
-Implement the full-screen module completion experience.
+Implement a simplified full-screen completion experience that cleanly closes the playable Foundations loop.
 
 ## Assigned Agent
 
@@ -11,22 +11,23 @@ Claude Code (Frontend)
 ## Ownership
 
 Files:
-- `src/screens/module/*`
+- `src/screens/completion/*`
 - `src/components/feedback/*`
 
 ## Dependencies
 
-- T009
-- T013
+- T006
+- T008
+- T012
 
 ## Must Do
 
 - completion takeover
-- stat reveal sequence
-- badge reveal area
+- clear completion message
 - back-home CTA
-- optional upcoming-topics preview treatment that does not imply another playable module
+- optional fixed reward or status copy if useful for polish
 
 ## Done When
 
 - final question completion transitions into celebration without dead-end behavior
+- the screen does not require advanced badge or reward derivation to feel complete

@@ -1,6 +1,6 @@
 # Design Contract
 
-This document defines the non-negotiable visual and interaction system for implementation.
+This document defines the non-negotiable visual and interaction system for the reduced demo packet.
 
 ## 1. Design Intent
 
@@ -8,6 +8,7 @@ This document defines the non-negotiable visual and interaction system for imple
 - The interface MUST read as a dark glass instrument, not a casual quiz game.
 - Saturated color MUST be used sparingly.
 - Visual polish on visible interactions takes precedence over hidden implementation complexity.
+- The implemented screens MUST feel intentional even though the overall scope is reduced.
 
 ## 2. Token Rules
 
@@ -19,7 +20,7 @@ This document defines the non-negotiable visual and interaction system for imple
 - `brand.neural` MUST remain the secondary system/data accent.
 - `semantic.success` MUST be reserved for correctness feedback.
 - `semantic.error` MUST be reserved for incorrect/destructive states.
-- `semantic.warning` MUST be used rarely and only for caution/streak-risk states.
+- `semantic.warning` MUST be used rarely and only for true caution states.
 
 ### Spacing
 
@@ -41,7 +42,7 @@ This document defines the non-negotiable visual and interaction system for imple
 
 - Cards MUST remain mostly dark.
 - Selected cards MUST use border/tint/glow treatment, not bright solid fills.
-- Large gradients MUST be limited to the four approved cases from the PRD.
+- Large gradients MUST be limited to approved hero/emphasis uses.
 - The phone shell MUST feel like black glass hardware with the specified border radius, border, and shadow language.
 
 ## 4. Primitive Component Rules
@@ -71,34 +72,30 @@ Rules:
 
 ## 5. Motion Contract
 
-- Framer Motion spring presets from the PRD MUST be centralized.
-- Linear easing MUST NOT be used except for shimmer loops and progress fills.
-- Numeric counters MUST animate rather than snap.
-- Progress indicators MUST animate on mount and update.
-- Ambient motion MUST remain subordinate to user action.
-- If two ambient animations compete, only one SHOULD run.
+- Motion in this packet is optional polish on implemented surfaces, not a dedicated delivery wave.
+- If motion is present, it MUST remain subordinate to user action.
+- Reduced motion and skip-animations mode MUST suppress nonessential motion.
+- Do not add ambient motion that competes with the core loop.
 
 ## 6. Interaction Feedback Contract
 
 - Every tap-able control MUST show visible feedback within 100ms.
 - Selection states MUST be sticky and obvious.
 - Disabled states MUST be visually distinct and non-responsive.
-- Correct/incorrect answer reveals MUST match the specified ring, tint, pulse, and shake behavior.
+- Correct/incorrect answer reveals MUST remain clear and readable.
 
-## 7. Sound Contract
+## 7. Screen Composition Rules
 
-- Sound MUST be supportive, not primary.
-- All sounds MUST be short and cohesive in timbre.
-- All sounds MUST preload before first interactive use.
-- Lower-priority sounds MUST be dropped, not queued, when a higher-priority sound is active.
-- Reduced motion / skip animations mode MUST also disable sound.
+### First-Run Personalization
 
-## 8. Screen Composition Rules
+- The flow MUST feel lightweight and direct.
+- Inputs and the primary CTA MUST read as the whole point of the screen, not as setup trivia.
 
 ### Home
 
-- Above-the-fold layout MUST prioritize greeting, streak, XP/level, and daily challenge.
-- Continue-learning MUST be visually stronger than the generic module grid.
+- Above-the-fold layout MUST prioritize greeting, date, and the primary Foundations entry CTA.
+- The playable Foundations entry MUST be visually stronger than the generic module grid.
+- Preview-only modules MUST read as real product breadth without looking broken.
 
 ### Question
 
@@ -106,22 +103,18 @@ Rules:
 - Explanation MUST appear only after answer reveal.
 - Header/footer chrome MUST NOT distract from puzzle content.
 
-### Progress
-
-- Data visualizations MUST use `brand.neural` unless they represent achievement/reward totals.
-
 ### Completion
 
 - Completion screen MUST be visually special but restrained.
-- Confetti density MUST remain low.
+- The moment should feel definitive without requiring elaborate reward choreography.
 
-## 9. Accessibility And Design
+## 8. Accessibility And Design
 
 - Focus rings MUST use the solar border treatment.
 - Motion-heavy features MUST degrade cleanly when reduced motion is active.
-- Sound-only signaling is forbidden; every audio event MUST have a visual counterpart.
+- The active demo path MUST not rely on sound-only signaling.
 
-## 10. Design Review Checklist
+## 9. Design Review Checklist
 
 Design review for any implemented surface MUST verify:
 - token compliance
