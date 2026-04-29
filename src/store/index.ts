@@ -5,6 +5,13 @@ export {
 } from "./state";
 export { appStore, createAppStore, useAppStore } from "./app-store";
 export {
+  loadCompletionReadyPreset,
+  loadDemoPreset,
+  loadFreshUserPreset,
+  loadMidFoundationsPreset,
+  loadPowerUserPreset,
+} from "./preset-loaders";
+export {
   selectDailyChallengeHistoryWindow,
   selectEffectiveMotionEnabled,
   selectEffectiveSoundEnabled,
@@ -40,3 +47,4 @@ export type {
   SubmitQuestionAnswerResult,
   UserProfile,
 } from "./types";
+export type { DemoPresetLoaderStore } from "./preset-loaders";
