@@ -12,8 +12,7 @@ For each completed section, capture:
 
 ## Current Blockers
 
-- As of 2026-04-28, `src/App.tsx` is still the primitive-gallery placeholder rather than routed screen composition, so completed screen work under `src/screens/*` is not yet wired into the running app.
-- As of 2026-04-28, the critical frontend blockers are now limited to `App.tsx` route/composition wiring and completion transition behavior.
+- As of 2026-04-29, there are no known backend-contract blockers in the reduced demo path. Frontend route composition, preset targeting, onboarding, and completion now have landed surfaces in the repo.
 
 ## T004
 

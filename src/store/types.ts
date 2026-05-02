@@ -204,6 +204,7 @@ export type AppStoreActions = {
   updateDemoPreferences: (patch: Partial<DemoPreferences>) => void;
   completeWelcomeStep: () => void;
   setOnboardingStage: (stage: OnboardingStage) => void;
+  setOnboardingDisplayName: (displayName: string) => void;
   setOnboardingGoal: (goal: UserGoal) => void;
   setOnboardingSampleQuestion: (questionId: QuestionId) => void;
   setOnboardingDiagnosticQuestionIds: (questionIds: readonly QuestionId[]) => void;

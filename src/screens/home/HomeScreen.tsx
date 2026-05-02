@@ -266,7 +266,16 @@ function ModuleCard({
               ariaLabel={`${module.title} progress`}
             />
           </div>
-        ) : null}
+        ) : (
+          <div className="flex items-center justify-between gap-3 border-t border-border-subtle pt-4">
+            <span className="text-caption uppercase tracking-wider text-text-tertiary">
+              Availability
+            </span>
+            <span className="text-caption uppercase tracking-wider text-text-secondary">
+              {module.ctaLabel}
+            </span>
+          </div>
+        )}
       </div>
     </Card>
   );

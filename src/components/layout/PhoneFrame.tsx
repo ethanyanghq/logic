@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { DemoPresetDefinition } from "@/data/presets";
 import { DemoControlsLayer, DemoControlsProvider } from "../demo";
 import { HomeIndicator } from "./HomeIndicator";
 import { Notch } from "./Notch";
@@ -6,9 +7,10 @@ import { StatusBar } from "./StatusBar";
 
 type PhoneFrameProps = {
   children: ReactNode;
+  onSelectPreset?: (preset: DemoPresetDefinition) => void;
 };
 
-export function PhoneFrame({ children }: PhoneFrameProps) {
+export function PhoneFrame({ children, onSelectPreset }: PhoneFrameProps) {
   return (
     <DemoControlsProvider>
       <div className="relative flex h-full w-full items-center justify-center bg-bg-canvas">
@@ -35,7 +37,7 @@ export function PhoneFrame({ children }: PhoneFrameProps) {
               {children}
             </main>
             <HomeIndicator />
-            <DemoControlsLayer />
+            <DemoControlsLayer onSelectPreset={onSelectPreset} />
           </div>
         </div>
       </div>

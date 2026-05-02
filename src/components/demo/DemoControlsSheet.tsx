@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
+import {
+  DEMO_PRESETS,
+  type DemoPresetDefinition,
+  type DemoPresetKey,
+} from "@/data/presets";
 import { Button } from "../ui";
 import { cn } from "../ui/cn";
-import { useAppStore } from "../../store";
+import { appStore, loadDemoPreset, useAppStore } from "../../store";
 
 const APP_VERSION = "0.0.1";
 
 export type DemoControlsSheetProps = {
   open: boolean;
   onClose: () => void;
+  onSelectPreset?: (preset: DemoPresetDefinition) => void;
 };
 
-export function DemoControlsSheet({ open, onClose }: DemoControlsSheetProps) {
+export function DemoControlsSheet({
+  open,
+  onClose,
+  onSelectPreset,
+}: DemoControlsSheetProps) {
   const preferences = useAppStore((state) => state.preferences);
   const updateDemoPreferences = useAppStore(
     (state) => state.updateDemoPreferences,
@@ -48,6 +58,13 @@ export function DemoControlsSheet({ open, onClose }: DemoControlsSheetProps) {
   const handleReset = () => {
     resetApp();
     setConfirmReset(false);
+    onClose();
+  };
+
+  const handleLoadPreset = (presetKey: DemoPresetKey) => {
+    const preset = loadDemoPreset(appStore, presetKey);
+    setConfirmReset(false);
+    onSelectPreset?.(preset);
     onClose();
   };
 
@@ -89,6 +106,7 @@ export function DemoControlsSheet({ open, onClose }: DemoControlsSheetProps) {
             soundEnabled={preferences.soundEnabled}
             skipAnimations={preferences.skipAnimations}
             gridOverlayEnabled={preferences.gridOverlayEnabled}
+            onSelectPreset={handleLoadPreset}
             onToggleSound={() =>
               updateDemoPreferences({ soundEnabled: !preferences.soundEnabled })
             }
@@ -114,6 +132,7 @@ type DemoControlsContentProps = {
   soundEnabled: boolean;
   skipAnimations: boolean;
   gridOverlayEnabled: boolean;
+  onSelectPreset: (presetKey: DemoPresetKey) => void;
   onToggleSound: () => void;
   onToggleSkipAnimations: () => void;
   onToggleGrid: () => void;
@@ -124,6 +143,7 @@ function DemoControlsContent({
   soundEnabled,
   skipAnimations,
   gridOverlayEnabled,
+  onSelectPreset,
   onToggleSound,
   onToggleSkipAnimations,
   onToggleGrid,
@@ -145,6 +165,23 @@ function DemoControlsContent({
       </header>
 
       <section className="mt-5 flex flex-col gap-2">
+        <span className="text-caption uppercase tracking-wider text-text-tertiary">
+          Presets
+        </span>
+        {DEMO_PRESETS.map((preset) => (
+          <PresetButton
+            key={preset.key}
+            label={preset.label}
+            description={preset.description}
+            onClick={() => onSelectPreset(preset.key)}
+          />
+        ))}
+      </section>
+
+      <section className="mt-5 flex flex-col gap-2">
+        <span className="text-caption uppercase tracking-wider text-text-tertiary">
+          Toggles
+        </span>
         <ToggleRow
           label="Sound"
           description="In-app sound effects."
@@ -214,6 +251,33 @@ function ResetConfirm({
         </Button>
       </div>
     </div>
+  );
+}
+
+function PresetButton({
+  label,
+  description,
+  onClick,
+}: {
+  label: string;
+  description: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "flex w-full flex-col gap-1 rounded-xl border border-border-subtle",
+        "bg-bg-surface-2 px-4 py-3 text-left transition duration-150 ease-out",
+        "hover:border-border-strong hover:bg-bg-surface-3",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-solar",
+        "focus-visible:ring-offset-2 focus-visible:ring-offset-bg-app",
+      )}
+    >
+      <span className="text-body text-text-primary">{label}</span>
+      <span className="text-caption text-text-secondary">{description}</span>
+    </button>
   );
 }
 

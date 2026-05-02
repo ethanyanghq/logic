@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import type { DemoPresetDefinition } from "@/data/presets";
 import { useKeyboardShortcut } from "../../hooks/useKeyboardShortcut";
 import { DemoControlsContext, useDemoControls } from "./DemoControlsContext";
 import { DemoControlsSheet } from "./DemoControlsSheet";
@@ -33,12 +34,20 @@ export function DemoControlsProvider({ children }: DemoControlsProviderProps) {
   );
 }
 
-export function DemoControlsLayer() {
+export type DemoControlsLayerProps = {
+  onSelectPreset?: (preset: DemoPresetDefinition) => void;
+};
+
+export function DemoControlsLayer({ onSelectPreset }: DemoControlsLayerProps) {
   const { open, closeSheet } = useDemoControls();
   return (
     <>
       <GridOverlay />
-      <DemoControlsSheet open={open} onClose={closeSheet} />
+      <DemoControlsSheet
+        open={open}
+        onClose={closeSheet}
+        onSelectPreset={onSelectPreset}
+      />
     </>
   );
 }

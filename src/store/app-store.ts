@@ -378,6 +378,14 @@ export function createAppStore(options: AppStoreOptions = {}) {
             },
           }));
         },
+        setOnboardingDisplayName: (displayName) => {
+          set((state) => ({
+            profile: {
+              ...state.profile,
+              displayName,
+            },
+          }));
+        },
         setOnboardingGoal: (goal) => {
           set((state) => ({
             profile: {
@@ -386,7 +394,7 @@ export function createAppStore(options: AppStoreOptions = {}) {
             },
             onboarding: {
               ...state.onboarding,
-              stage: "sample",
+              stage: "profile",
               goalSelected: true,
             },
           }));

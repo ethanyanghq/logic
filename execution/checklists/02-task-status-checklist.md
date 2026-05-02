@@ -31,8 +31,8 @@ Rule:
 
 ## Wave 5
 
-- [ ] T010 First-run personalization
-- [ ] T015 Module completion
+- [x] T010 First-run personalization
+- [x] T015 Module completion
 - [x] T016 Demo presets
 
 Note:

@@ -1,5 +1,8 @@
 export { DemoControlsProvider, DemoControlsLayer } from "./DemoControls";
-export type { DemoControlsProviderProps } from "./DemoControls";
+export type {
+  DemoControlsLayerProps,
+  DemoControlsProviderProps,
+} from "./DemoControls";
 
 export { DemoControlsSheet } from "./DemoControlsSheet";
 export type { DemoControlsSheetProps } from "./DemoControlsSheet";

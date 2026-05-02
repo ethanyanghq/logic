@@ -1,0 +1,1 @@
+export { CompletionHero } from "./CompletionHero";
