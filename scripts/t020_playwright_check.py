@@ -61,9 +61,7 @@ def launch_browser(playwright: Playwright):
 def open_demo_controls(page: Page, *, via_shortcut: bool) -> None:
     dialog = page.get_by_role("dialog", name="Demo controls")
     if via_shortcut:
-        page.keyboard.press("Meta+Shift+R")
-        if not dialog.is_visible():
-            page.keyboard.press("Control+Shift+R")
+        page.keyboard.press("R")
     else:
         page.get_by_role("button", name="Demo controls").click()
     expect(dialog).to_be_visible(timeout=APP_TIMEOUT_MS)

@@ -14,6 +14,7 @@ import {
   getQuestionsForModule,
 } from "./data/content";
 import type { ModuleId } from "./lib/modules";
+import { useSoundEffects } from "./hooks/useSoundEffects";
 import { CompletionScreen } from "./screens/completion";
 import { HomeScreen } from "./screens/home";
 import { OnboardingScreen } from "./screens/onboarding";
@@ -39,6 +40,7 @@ export function App() {
   const shouldStartInOnboarding = useAppStore(selectShouldStartInOnboarding);
   const completeModule = useAppStore((state) => state.completeModule);
   const questionProgress = useAppStore((state) => state.questionProgress);
+  const playSound = useSoundEffects();
 
   const [route, setRoute] = useState<AppRoute>({ screen: "home" });
   const [routeRevision, setRouteRevision] = useState(0);
@@ -101,6 +103,7 @@ export function App() {
     }
 
     const completionResult = completeModule({ moduleId: route.moduleId });
+    playSound("complete");
     setRoute({
       screen: "completion",
       moduleId: route.moduleId,

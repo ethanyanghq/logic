@@ -7,6 +7,7 @@ import {
 } from "@/data/presets";
 import { Button } from "../ui";
 import { cn } from "../ui/cn";
+import { useSoundEffects } from "../../hooks/useSoundEffects";
 import { appStore, loadDemoPreset, useAppStore } from "../../store";
 
 const APP_VERSION = "0.0.1";
@@ -27,6 +28,7 @@ export function DemoControlsSheet({
     (state) => state.updateDemoPreferences,
   );
   const resetApp = useAppStore((state) => state.resetApp);
+  const playSound = useSoundEffects();
   const [confirmReset, setConfirmReset] = useState(false);
 
   useEffect(() => {
@@ -57,12 +59,14 @@ export function DemoControlsSheet({
 
   const handleReset = () => {
     resetApp();
+    playSound("reset");
     setConfirmReset(false);
     onClose();
   };
 
   const handleLoadPreset = (presetKey: DemoPresetKey) => {
     const preset = loadDemoPreset(appStore, presetKey);
+    playSound("preset");
     setConfirmReset(false);
     onSelectPreset?.(preset);
     onClose();
@@ -158,8 +162,6 @@ function DemoControlsContent({
         <h2 className="text-h2 text-text-primary">Stage and reset</h2>
         <p className="text-body text-text-secondary">
           Toggle demo affordances or reset to first launch. Open with{" "}
-          <KeyHint label="⌘" />
-          <KeyHint label="⇧" />
           <KeyHint label="R" />.
         </p>
       </header>

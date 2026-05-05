@@ -28,6 +28,7 @@ export function useKeyboardShortcut(
       if ((event.ctrlKey || event.metaKey) !== ctrlOrMeta) return;
       if (event.shiftKey !== shift) return;
       if (event.altKey !== alt) return;
+      if (isEditableTarget(event.target)) return;
       if (preventDefault) {
         event.preventDefault();
         event.stopPropagation();
@@ -40,4 +41,16 @@ export function useKeyboardShortcut(
       window.removeEventListener("keydown", onKeyDown, { capture: true } as EventListenerOptions);
     };
   }, [enabled, preventDefault, key, ctrlOrMeta, shift, alt, handler]);
+}
+
+function isEditableTarget(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) return false;
+
+  const tagName = target.tagName.toLowerCase();
+  return (
+    target.isContentEditable ||
+    tagName === "input" ||
+    tagName === "select" ||
+    tagName === "textarea"
+  );
 }

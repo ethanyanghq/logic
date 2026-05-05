@@ -4,6 +4,10 @@ import { Button, ProgressBar, RadioOption, Skeleton } from "@/components/ui";
 import type { RadioOptionState } from "@/components/ui";
 import { cn } from "@/components/ui/cn";
 import {
+  usePrepareSoundEffects,
+  useSoundEffects,
+} from "@/hooks/useSoundEffects";
+import {
   appStore,
   selectEffectiveMotionEnabled,
   selectQuestionProgress,
@@ -68,6 +72,8 @@ export function QuestionScreen(props: QuestionScreenProps) {
   const setQuestionSelection = useAppStore((s) => s.setQuestionSelection);
   const clearQuestionSelection = useAppStore((s) => s.clearQuestionSelection);
   const submitQuestionAnswer = useAppStore((s) => s.submitQuestionAnswer);
+  const playSound = useSoundEffects();
+  const prepareSound = usePrepareSoundEffects();
 
   const persistedAttempt = useMemo(
     () => pickAttempt(questionProgress, context, dailyDate),
@@ -117,6 +123,7 @@ export function QuestionScreen(props: QuestionScreenProps) {
   const handleSelect = useCallback(
     (index: number) => {
       if (stage !== "selecting") return;
+      playSound("select");
       setSelectedIndex(index);
       setQuestionSelection({
         questionId: question.id,
@@ -126,13 +133,23 @@ export function QuestionScreen(props: QuestionScreenProps) {
         localDate: dailyDate ?? null,
       });
     },
-    [stage, question.id, context, moduleId, dailyDate, setQuestionSelection],
+    [
+      stage,
+      playSound,
+      question.id,
+      context,
+      moduleId,
+      dailyDate,
+      setQuestionSelection,
+    ],
   );
 
   const handleSubmit = useCallback(() => {
     if (stage !== "selecting" || selectedIndex === null) return;
     if (submittedRef.current) return;
     submittedRef.current = true;
+    prepareSound();
+    playSound("submit");
     setStage("submitting");
 
     const finalize = () => {
@@ -145,8 +162,10 @@ export function QuestionScreen(props: QuestionScreenProps) {
         localDate: dailyDate ?? null,
       });
       if (result.isCorrect) {
+        playSound("correct");
         setRevealCorrect(true);
       } else {
+        playSound("incorrect");
         setRevealCorrect(false);
         setShakeKey((k) => k + 1);
         if (motionEnabled) {
@@ -167,6 +186,8 @@ export function QuestionScreen(props: QuestionScreenProps) {
     stage,
     selectedIndex,
     submitQuestionAnswer,
+    prepareSound,
+    playSound,
     question.id,
     question.correctIndex,
     context,

@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import type { DemoPresetDefinition } from "@/data/presets";
 import { useKeyboardShortcut } from "../../hooks/useKeyboardShortcut";
+import { useSoundEffects } from "../../hooks/useSoundEffects";
 import { DemoControlsContext, useDemoControls } from "./DemoControlsContext";
 import { DemoControlsSheet } from "./DemoControlsSheet";
 import { GridOverlay } from "./GridOverlay";
@@ -12,15 +13,23 @@ export type DemoControlsProviderProps = {
 
 export function DemoControlsProvider({ children }: DemoControlsProviderProps) {
   const [open, setOpen] = useState(false);
+  const playSound = useSoundEffects();
 
-  const openSheet = useCallback(() => setOpen(true), []);
+  const openSheet = useCallback(() => {
+    playSound("open");
+    setOpen(true);
+  }, [playSound]);
   const closeSheet = useCallback(() => setOpen(false), []);
-  const toggleSheet = useCallback(() => setOpen((prev) => !prev), []);
+  const toggleSheet = useCallback(() => {
+    setOpen((prev) => {
+      if (!prev) {
+        playSound("open");
+      }
+      return !prev;
+    });
+  }, [playSound]);
 
-  useKeyboardShortcut(
-    { key: "r", ctrlOrMeta: true, shift: true },
-    openSheet,
-  );
+  useKeyboardShortcut({ key: "r" }, openSheet);
 
   const value = useMemo(
     () => ({ open, openSheet, closeSheet, toggleSheet }),

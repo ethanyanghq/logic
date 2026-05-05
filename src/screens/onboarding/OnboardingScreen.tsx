@@ -1,6 +1,7 @@
 import type { ChangeEvent, FormEvent } from "react";
 import { DemoControlsTrigger } from "@/components/demo";
 import { Button, Card, Input, RadioOption, Tag } from "@/components/ui";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
 import {
   AVATAR_IDS,
   type UserGoal,
@@ -20,6 +21,7 @@ export function OnboardingScreen() {
   const completeOnboardingProfile = useAppStore(
     (state) => state.completeOnboardingProfile,
   );
+  const playSound = useSoundEffects();
 
   const activeStep =
     onboarding.stage === "profile" ||
@@ -36,6 +38,7 @@ export function OnboardingScreen() {
       completeWelcomeStep();
     }
 
+    playSound("select");
     setOnboardingGoal(goal);
   };
 
@@ -55,6 +58,7 @@ export function OnboardingScreen() {
       displayName: trimmedDisplayName,
       avatarId: AVATAR_IDS[0],
     });
+    playSound("complete");
   };
 
   return (
